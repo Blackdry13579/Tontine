@@ -1,0 +1,6 @@
+                                                          pg_get_constraintdef                                                           
+-----------------------------------------------------------------------------------------------------------------------------------------
+ CHECK (((role)::text = ANY ((ARRAY['membre'::character varying, 'organisateur'::character varying])::text[])))
+ CHECK (((statut)::text = ANY ((ARRAY['actif'::character varying, 'suspendu'::character varying, 'exclu'::character varying])::text[])))
+(2 rows)
+
