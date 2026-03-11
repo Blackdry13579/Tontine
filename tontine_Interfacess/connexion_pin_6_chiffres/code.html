@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connexion Sécurisée - PIN &amp; Biométrie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "warm-gray": "#867e65",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#171612] dark:text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full max-w-[480px] mx-auto flex-col px-6 py-8 justify-between">
+<!-- Header Section -->
+<header class="flex flex-col items-center text-center mt-8">
+<div class="bg-primary/10 p-4 rounded-xl mb-6">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1">
+                    security
+                </span>
+</div>
+<h1 class="text-3xl font-bold tracking-tight mb-2">Bienvenue</h1>
+<p class="text-warm-gray dark:text-warm-gray/80 font-medium">Saisissez votre code PIN</p>
+</header>
+<!-- PIN Status Indicators -->
+<div class="flex justify-center gap-6 my-10"><!-- Filled Dot -->
+<div class="size-4 rounded-full bg-primary shadow-[0_0_12px_rgba(201,163,38,0.4)]"></div>
+<!-- Filled Dot -->
+<div class="size-4 rounded-full bg-primary shadow-[0_0_12px_rgba(201,163,38,0.4)]"></div>
+<!-- Empty Dot -->
+<div class="size-4 rounded-full border-2 border-primary/30 bg-transparent"></div>
+<!-- Empty Dot -->
+<div class="size-4 rounded-full border-2 border-primary/30 bg-transparent"></div>
+<!-- Empty Dot -->
+<div class="size-4 rounded-full border-2 border-primary/30 bg-transparent"></div>
+<!-- Empty Dot -->
+<div class="size-4 rounded-full border-2 border-primary/30 bg-transparent"></div></div>
+<!-- Minimalist Numpad -->
+<div class="grid grid-cols-3 gap-y-6 gap-x-8 w-full max-w-[320px] mx-auto">
+<!-- Row 1 -->
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">1</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">2</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">3</button>
+<!-- Row 2 -->
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">4</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">5</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">6</button>
+<!-- Row 3 -->
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">7</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">8</button>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">9</button>
+<!-- Bottom Row -->
+<div class="size-20"></div>
+<button class="size-20 rounded-full flex items-center justify-center text-2xl font-semibold hover:bg-primary/10 active:bg-primary/20 transition-all border border-transparent hover:border-primary/20">0</button>
+<button class="size-20 rounded-full flex items-center justify-center text-warm-gray hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">backspace</span>
+</button>
+</div>
+<!-- Biometric & Forgot PIN -->
+<div class="flex flex-col items-center gap-6 mt-12 mb-8">
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white">fingerprint</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Biométrie</span>
+</button>
+<button class="text-warm-gray hover:text-primary text-sm font-medium underline underline-offset-4 decoration-warm-gray/30 transition-all">
+                Code PIN oublié ?
+            </button>
+</div>
+<!-- Security Footer -->
+<footer class="flex items-center justify-center gap-2 pb-4 opacity-60">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-xs font-semibold tracking-wider uppercase">Connexion sécurisée</span>
+</footer>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="fixed bottom-[-5%] right-[-5%] w-[30%] h-[30%] bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+</body></html>

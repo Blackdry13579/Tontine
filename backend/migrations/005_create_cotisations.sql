@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS cotisations (
     montant DECIMAL(12,2) NOT NULL,
     montant_penalite DECIMAL(12,2) DEFAULT 0,
     statut VARCHAR(20) DEFAULT 'en_attente'
-        CHECK (statut IN ('en_attente', 'en_validation', 'payee', 'en_retard', 'rejetee')),
+        CHECK (statut IN ('en_attente', 'en_validation', 'validee', 'payee', 'en_retard', 'rejetee')),
     moyen_paiement VARCHAR(50),
     reference_transaction VARCHAR(255),
     preuve_paiement_url TEXT,

@@ -1,25 +1,48 @@
 const cotisationModel = require('../models/cotisationModel');
 const membershipModel = require('../models/membershipModel');
+const notificationModel = require('../models/notificationModel');
 const apiResponse = require('../utils/apiResponse');
 const logger = require('../utils/logger');
 const pool = require('../config/database');
 
 const initiatePayment = async (req, res, next) => {
     try {
-        const { cycle_id, montant, nom_expediteur, prenom_expediteur, telephone_expediteur, preuve_paiement_url } = req.body;
+        const { cycle_id, moyen_paiement, telephone_expediteur, nom_expediteur, prenom_expediteur } = req.body;
 
-        // Find membership for this user in the tontine of the cycle
-        const { rows } = await pool.query(
-            `SELECT m.id FROM memberships m
-       JOIN cycles c ON m.tontine_id = c.tontine_id
-       WHERE m.user_id = $1 AND c.id = $2`,
-            [req.user.id, cycle_id]
+        // 1. Récupérer le montant automatiquement depuis la tontine
+        const { rows: amountRows } = await pool.query(
+            `SELECT t.montant_cotisation, t.id as tontine_id
+             FROM tontines t
+             JOIN memberships m ON m.tontine_id = t.id
+             JOIN cycles c ON c.tontine_id = t.id
+             WHERE c.id = $1 AND m.user_id = $2`,
+            [cycle_id, req.user.id]
         );
 
-        if (rows.length === 0) return apiResponse.error(res, 'Vous n\'etes pas membre de cette tontine', 403);
+        if (amountRows.length === 0) {
+            return apiResponse.error(res, 'Vous n\'êtes pas membre de cette tontine ou cycle invalide', 403);
+        }
 
-        const membership_id = rows[0].id;
+        const montant = amountRows[0].montant_cotisation;
+        const tontine_id = amountRows[0].tontine_id;
 
+        // Find membership_id for this user
+        const { rows: membershipRows } = await pool.query(
+            `SELECT id FROM memberships WHERE user_id = $1 AND tontine_id = $2`,
+            [req.user.id, tontine_id]
+        );
+        const membership_id = membershipRows[0].id;
+
+        /*
+        TODO: V2 — Intégration API LigdiCash
+        Quand l'API LigdiCash sera disponible :
+        - Orange Money, Wave, MTN MoMo, Moov Money gérés automatiquement
+        - Confirmation automatique via webhook
+        - Plus besoin de validation manuelle par l'organisateur
+        - Le montant sera débité directement depuis le téléphone du membre
+        */
+
+        // 2. Créer la cotisation
         const cotisation = await cotisationModel.create({
             cycle_id,
             membership_id,
@@ -27,11 +50,39 @@ const initiatePayment = async (req, res, next) => {
             nom_expediteur,
             prenom_expediteur,
             telephone_expediteur,
-            preuve_paiement_url,
-            statut: 'en_attente_validation'
+            moyen_paiement,
+            statut: 'en_validation'
         });
 
-        logger.info(`Paiement manuel initie par ${req.user.telephone} pour le cycle ${cycle_id}`);
+        /*
+        TODO: V2 — Upload capture d'écran via Firebase Storage
+        Pour le MVP, preuve_url reste NULL.
+        À réactiver quand Firebase Storage sera configuré.
+
+        Logique V2 :
+        1. Recevoir le fichier image dans req.file (multer)
+        2. Uploader dans Firebase Storage :
+           /preuves-paiement/{tontine_id}/{cotisation_id}/{timestamp}.jpg
+        3. Stocker l'URL publique dans cotisations.preuve_url
+        */
+
+        // 3. Envoyer une notification à l'organisateur
+        const { rows: organizers } = await pool.query(
+            `SELECT user_id FROM memberships WHERE tontine_id = $1 AND role = 'organisateur'`,
+            [tontine_id]
+        );
+
+        for (const org of organizers) {
+            await notificationModel.create({
+                user_id: org.user_id,
+                type: 'paiement_soumis',
+                titre: 'Nouvelle cotisation à valider',
+                message: `${req.user.nom} ${req.user.prenom} a soumis sa cotisation de ${montant} FCFA\nEnvoi depuis le ${telephone_expediteur} au nom de ${nom_expediteur} ${prenom_expediteur} via ${moyen_paiement}`,
+                data: { cotisation_id: cotisation.id, tontine_id }
+            });
+        }
+
+        logger.info(`Paiement manuel initié par ${req.user.telephone} (${req.user.nom}) pour le cycle ${cycle_id}`);
         return apiResponse.success(res, cotisation, 'Paiement soumis pour validation', 201);
     } catch (err) {
         next(err);

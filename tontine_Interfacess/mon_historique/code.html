@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mon Historique - Tontine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1", // Specified Crème #F5F0E1
+                        "background-dark": "#201d12",
+                        "status-green": "#22c55e",
+                        "status-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .timeline-line {
+            width: 2px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #c9a326 0,
+                #c9a326 4px,
+                transparent 4px,
+                transparent 8px
+            );
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#201d12] dark:text-[#F5F0E1] min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-4">
+<div class="flex items-center justify-between mb-6">
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-white/10 shadow-sm border border-primary/10">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Mon Historique</h1>
+<button class="flex items-center justify-center size-10 rounded-full bg-white dark:bg-white/10 shadow-sm border border-primary/10">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-medium text-sm shadow-md flex-shrink-0">
+                Tout
+            </button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-white/5 border border-primary/20 text-[#201d12] dark:text-[#F5F0E1] font-medium text-sm flex-shrink-0">
+                Cotisations
+            </button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-white/5 border border-primary/20 text-[#201d12] dark:text-[#F5F0E1] font-medium text-sm flex-shrink-0">
+                Distributions
+            </button>
+</div>
+</header>
+<!-- Main Content / Timeline -->
+<main class="flex-1 px-4 py-4">
+<!-- Grouping: Mars 2024 -->
+<section class="mb-8">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-primary/70">Mars 2024</h2>
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+</div>
+<div class="relative space-y-8 pl-4">
+<!-- Vertical Dotted Line -->
+<div class="absolute left-[19px] top-4 bottom-4 timeline-line opacity-30"></div>
+<!-- Transaction Item 1 -->
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 flex size-10 items-center justify-center rounded-full bg-status-green text-white shadow-lg ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-1 bg-white dark:bg-white/5 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Cotisation Tontine Solaire</h3>
+<span class="font-bold text-status-red">-25,000 FCFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<p class="text-primary/70 font-medium">15 Mars 2024</p>
+<span class="px-2 py-0.5 rounded-full bg-status-green/10 text-status-green text-[10px] font-bold uppercase tracking-wider">Payé</span>
+</div>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 flex size-10 items-center justify-center rounded-full bg-primary text-white shadow-lg ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-[20px]">south_west</span>
+</div>
+<div class="flex-1 bg-white dark:bg-white/5 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Distribution Mensuelle</h3>
+<span class="font-bold text-status-green">+150,000 FCFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<p class="text-primary/70 font-medium">10 Mars 2024</p>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">Reçu</span>
+</div>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 flex size-10 items-center justify-center rounded-full bg-status-green text-white shadow-lg ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-1 bg-white dark:bg-white/5 p-4 rounded-xl shadow-sm border border-primary/5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Cotisation Tontine Solaire</h3>
+<span class="font-bold text-status-red">-25,000 FCFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<p class="text-primary/70 font-medium">01 Mars 2024</p>
+<span class="px-2 py-0.5 rounded-full bg-status-green/10 text-status-green text-[10px] font-bold uppercase tracking-wider">Payé</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Grouping: Février 2024 -->
+<section class="mb-8 opacity-75">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-[1px] flex-1 bg-primary/10"></div>
+<h2 class="text-sm font-bold uppercase tracking-widest text-primary/50">Février 2024</h2>
+<div class="h-[1px] flex-1 bg-primary/10"></div>
+</div>
+<div class="relative space-y-8 pl-4">
+<div class="absolute left-[19px] top-4 bottom-4 timeline-line opacity-10"></div>
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 flex size-10 items-center justify-center rounded-full bg-status-green/50 text-white ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-1 bg-white/50 dark:bg-white/5 p-4 rounded-xl border border-primary/5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-base">Cotisation Tontine Solaire</h3>
+<span class="font-bold text-status-red/50">-25,000 FCFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<p class="text-primary/50 font-medium">15 Fév. 2024</p>
+<span class="px-2 py-0.5 rounded-full bg-status-green/5 text-status-green/50 text-[10px] font-bold uppercase tracking-wider">Payé</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 bg-white dark:bg-background-dark border-t border-primary/10 px-6 py-3 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-medium text-primary/40 group-hover:text-primary uppercase tracking-tighter">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">history</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">Historique</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors">groups</span>
+<span class="text-[10px] font-medium text-primary/40 group-hover:text-primary uppercase tracking-tighter">Tontines</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-medium text-primary/40 group-hover:text-primary uppercase tracking-tighter">Profil</span>
+</a>
+</nav>
+<!-- Visual Floating Background Element -->
+<div class="fixed -bottom-24 -right-24 size-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed top-1/2 -left-32 size-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+</body></html>

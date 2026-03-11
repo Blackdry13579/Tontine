@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paiement Cotisation - Tontine Solaire</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#f5f0e1",
+                        "background-dark": "#201d12",
+                        "card-bg": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .african-pattern {
+            background-image: radial-gradient(#c9a326 0.5px, transparent 0.5px);
+            background-size: 10px 10px;
+            opacity: 0.05;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#2d2a21] dark:text-[#f5f0e1]">
+<!-- Main Container -->
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center bg-transparent p-6 justify-between z-10">
+<button class="text-[#2d2a21] dark:text-[#f5f0e1] flex size-12 shrink-0 items-center justify-center rounded-full bg-white/50 dark:bg-white/10 shadow-sm border border-white/20">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-[#2d2a21] dark:text-[#f5f0e1] text-xl font-bold leading-tight tracking-tight flex-1 text-center pr-12">Nouveau paiement</h2>
+</header>
+<!-- Pattern Background Layer -->
+<div class="absolute inset-0 african-pattern pointer-events-none"></div>
+<main class="flex-1 p-6 z-10 space-y-8">
+<!-- Summary Card -->
+<section class="animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-xl shadow-primary/5 bg-card-bg dark:bg-[#2a271d] overflow-hidden border border-primary/10">
+<div class="relative w-full h-32 bg-primary/10 overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 african-pattern opacity-10"></div>
+<span class="material-symbols-outlined text-primary text-5xl">account_balance_wallet</span>
+</div>
+<div class="flex w-full flex-col items-stretch justify-center gap-2 p-6">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Récapitulatif</p>
+<p class="text-[#2d2a21] dark:text-white text-2xl font-bold leading-tight">25,000 FCFA</p>
+</div>
+<div class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold">
+                                Mars 2024
+                            </div>
+</div>
+<div class="h-px bg-primary/10 my-2"></div>
+<div class="flex items-center gap-2 text-[#867e65] dark:text-[#a09a85]">
+<span class="material-symbols-outlined text-sm">groups</span>
+<p class="text-base font-medium">Tontine Solaire</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Methods Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-[#2d2a21] dark:text-white text-lg font-bold leading-tight tracking-tight">Moyen de paiement</h3>
+<span class="text-xs text-primary font-medium">3 options disponibles</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Orange Money -->
+<label class="group relative flex items-center gap-4 rounded-xl border-2 border-solid border-white/50 dark:border-white/5 bg-white/40 dark:bg-white/5 p-4 transition-all hover:border-primary/50 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-lg has-[:checked]:shadow-primary/10">
+<input checked="" class="peer hidden" name="payment_method" type="radio"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-600">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div class="flex grow flex-col">
+<p class="text-[#2d2a21] dark:text-white text-base font-semibold">Orange Money</p>
+<p class="text-[#867e65] dark:text-[#a09a85] text-xs">Paiement mobile sécurisé</p>
+</div>
+<div class="hidden peer-checked:flex size-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+<!-- MTN MoMo -->
+<label class="group relative flex items-center gap-4 rounded-xl border-2 border-solid border-white/50 dark:border-white/5 bg-white/40 dark:bg-white/5 p-4 transition-all hover:border-primary/50 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-lg has-[:checked]:shadow-primary/10">
+<input class="peer hidden" name="payment_method" type="radio"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-yellow-400/10 text-yellow-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex grow flex-col">
+<p class="text-[#2d2a21] dark:text-white text-base font-semibold">MTN MoMo</p>
+<p class="text-[#867e65] dark:text-[#a09a85] text-xs">Paiement instantané</p>
+</div>
+<div class="hidden peer-checked:flex size-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+<!-- Portefeuille App -->
+<label class="group relative flex items-center gap-4 rounded-xl border-2 border-solid border-white/50 dark:border-white/5 bg-white/40 dark:bg-white/5 p-4 transition-all hover:border-primary/50 cursor-pointer has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-lg has-[:checked]:shadow-primary/10">
+<input class="peer hidden" name="payment_method" type="radio"/>
+<div class="flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">wallet</span>
+</div>
+<div class="flex grow flex-col">
+<p class="text-[#2d2a21] dark:text-white text-base font-semibold">Portefeuille App</p>
+<p class="text-primary text-xs font-medium">Solde: 45,000 FCFA</p>
+</div>
+<div class="hidden peer-checked:flex size-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Security Trust -->
+<div class="flex flex-col items-center justify-center gap-2 pt-4">
+<div class="flex items-center gap-2 text-[#867e65] dark:text-[#a09a85]">
+<span class="material-symbols-outlined text-sm">lock</span>
+<p class="text-xs font-medium tracking-wide">Paiement sécurisé par cryptage SSL</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action -->
+<footer class="sticky bottom-0 p-6 glass-effect border-t border-primary/5 dark:border-white/5 z-20">
+<button class="w-full h-16 rounded-full bg-primary text-white text-lg font-bold shadow-2xl shadow-primary/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3">
+<span>Confirmer le paiement</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<!-- Safe Area Spacer for Mobile -->
+<div class="h-4"></div>
+</footer>
+</div>
+</body></html>

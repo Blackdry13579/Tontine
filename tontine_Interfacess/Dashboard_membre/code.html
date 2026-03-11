@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C9A227", // Antique Gold
+                        "background-light": "#F5F0E1", // Luxe Cream
+                        "background-dark": "#0B3D2E", // Deep Emerald
+                        "emerald-dark": "#0B3D2E",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1.25rem", // 20px
+                        "lg": "1.5rem", // 24px
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #F5F0E1;
+        }
+        .custom-emerald-card {
+            background-color: #0B3D2E;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light text-slate-900 font-display min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="flex items-center justify-between px-6 pt-8 pb-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Profile Avatar" class="w-12 h-12 rounded-full object-cover border-2 border-primary/20" data-alt="Close up portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFcO2H435Rx-6-OrtcbauuVjfdCUsDrkj9C66lS5YP6ya3HXuljIrEt-IL3JMS8fc817NMlY-xOkYIpZX1fImESBH-FicWJbCYbb3RlItHfHqYIbXGMv_ycnBhKn5WF8t8bh89tLXhooJMktOkbmLF_FTt5SAQ5GhxQGrIfXMJDRKIzp0viIdLCqF6BTeSROxFTNAMcwhKkgmEzjudgzTexlRBFgvJjZoPOe1ek6mfxF5x2mU_zeoFnrHYDyd1c8C_5ym4-fo24rc"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-background-light rounded-full"></div>
+</div>
+<div>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Bienvenue</p>
+<h1 class="text-lg font-bold text-emerald-dark">Bonjour, Aaron</h1>
+</div>
+</div>
+<button class="relative p-2 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-emerald-dark">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-primary rounded-full border-2 border-white"></span>
+</button>
+</header>
+<main class="flex-1 px-6 pb-24 space-y-6 overflow-y-auto">
+<!-- Main Balance Card -->
+<div class="custom-emerald-card rounded-xl p-8 shadow-2xl relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">SOLDE TOTAL</p>
+<h2 class="text-4xl font-bold text-white tracking-tight mb-3 whitespace-nowrap">1,250,000 FCFA</h2>
+<div class="flex items-center gap-3">
+<span class="bg-white/10 text-primary text-[10px] font-bold px-2 py-1 rounded-md">+12% ce mois</span>
+<span class="text-white/40 text-[10px]">Dernière mise à jour: Aujourd'hui</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex justify-around items-center px-2 py-4">
+<div class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined text-white text-2xl">add_card</span>
+</div>
+<p class="text-xs font-bold text-emerald-dark">Verser</p>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 bg-white border border-primary/20 rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">person_add</span>
+</div>
+<p class="text-xs font-bold text-emerald-dark">Créer</p>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-16 h-16 bg-white border border-primary/20 rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">share</span>
+</div>
+<p class="text-xs font-bold text-emerald-dark">Inviter</p>
+</div>
+</div>
+<!-- Next Deadline Card -->
+<div class="bg-white p-6 rounded-xl border-l-4 border-l-primary shadow-sm flex items-center justify-between">
+<div class="flex gap-4 items-center">
+<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">calendar_today</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-emerald-dark">Mes Tontines Actives</h3>
+<p class="text-[10px] text-slate-400 font-bold uppercase mb-1">TONTINE IMMOBILIÈRE</p>
+<p class="text-xs text-slate-500 font-medium">Dû le <span class="text-emerald-dark font-bold">14 Oct.</span></p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<p class="text-primary font-bold text-lg">25,000 FCFA</p>
+<button class="bg-primary text-white text-[10px] font-bold px-4 py-2 rounded-lg uppercase tracking-wider shadow-md">Payer maintenant</button>
+</div>
+</div>
+<!-- Tontines Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-emerald-dark">Mes Tontines Actives</h3>
+<button class="text-primary text-sm font-bold">VOIR TOUT</button>
+</div>
+<!-- Tontine Card 1 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-emerald-dark/5 space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-emerald-dark/5 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Aerial view of a beach for travel theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6jfQKJzfZOpZO96BqFkLl2XJsfZCK99X3vg28Gh6FJaGLQJgk6yLNGIUGv5d8_eR2tHm6n_HvrCYs_kTdVjuMzTiR3Pa-QXAGzP0gJ0jAihA0jkGNkLKQjjCs3A_GLAR1aow7IWk3IShR6bajsSie532Dof_DcK_Zk2FuoPgEs7QMfuYeIf8S6ja1XiNU_C0KLTcrOuKxAxFN53-N8A-EhPMwNTAAjjcaNulkgdthGziL6M-RxbhMbT-2QMuOmWrojtooqT44Wvw"/>
+</div>
+<div>
+<h4 class="text-sm font-bold text-emerald-dark">Tontine Vacances</h4>
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Fin: 24 Dec 2024</p>
+</div>
+</div>
+<p class="text-sm font-bold text-primary whitespace-nowrap">60%</p>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-1.5">
+<img class="w-5 h-5 rounded-full border border-white" data-alt="Portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW9RqAaBhCd2lngLDCfPHEr4lHbC65Cl8Q2S-1o0lxu2Xp4A7Vb9VcU1aH-iy8IB6f9ChwT9WLn4C8bOCPOLm_-l2cPn36uHPM8HyeGiXa1SPdAb1A-wc8IbuHs4V7YOwo1aMdWDcOWrVchf6QAyeahQmPbGeL5I_MIUpn6KK2KHJBwW76QD3s1RmBvhWYJG15_Wr1LeGKlr9zWDeR5SBY0_KrVfDL8BUP8snB4KrWoooxTg1BDTA57c-LQXmudTsMPqDmyM5S9Ns"/>
+<img class="w-5 h-5 rounded-full border border-white" data-alt="Portrait of a business man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmQpNtMrOI3LbpwA2I1zgQHVszprlyiqx9Mxg_wqrr8qHIa6bkupMpbAa0PX4KgxHwNMjJaln7aIRCt0Ds9t6_S60qMc5uOA_C9voJ4Rb4c6-zCZYDw9sihyCbV0s-c385XMQkUMhrAGiw8pj7ddvkmE1u7p1ywILxioNecp-JbxPwVBIBpowfutRnUERIz1KwQ1gwQEiqiUlQBP6bJsOiV1OrnsvXUBPt7u4MOt2PJc_93xLpeQ3hF2XE6fwwlYsBA8RSKfyw_Fg"/>
+<div class="w-5 h-5 rounded-full bg-slate-200 border border-white flex items-center justify-center text-[8px] font-bold">+8</div>
+</div>
+<p class="text-[10px] font-medium text-slate-400">Objectif: 2.5M FCFA</p>
+</div>
+</div>
+</div>
+<!-- Tontine Card 2 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-emerald-dark/5 space-y-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-emerald-dark/5 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover opacity-80" data-alt="Modern corporate skyscraper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaW8WhYv9SpAosjdsa6awRglsVQ0LQm3SH9CUCfa6mKZJ1XVLCIyJgh4uP9K28En2nLTF4Er2P3tB9ApWUUXyGUWIF6sE0dg_UwQBgqVH6K2n3iSOM46yxozD7HY-QAczxPyE-hpYsdaEgRNU_n-I2JC36KMh-ehSYtpMxkeNcBBmi4QvU0-dt9npCbj0pWstoplFkPeVg_KM_A8qTHhFcxxs8yzdtLlmefNNr6df8Hw0w-JyosqrfOeHfkqP8ajZhzSvsiDZ8ygE"/>
+</div>
+<div>
+<h4 class="text-sm font-bold text-emerald-dark">Tontine Business</h4>
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Fin: 15 Mar 2025</p>
+</div>
+</div>
+<p class="text-sm font-bold text-primary whitespace-nowrap">8%</p>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 8%"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-1.5">
+<img class="w-5 h-5 rounded-full border border-white" data-alt="Smiling man portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGNa8g9mNw7bQuvwuj0thPPb8XFLyUTPNYC57CsdVU0VQJ9GDhmUaNhp6Uhlg6ufGlcPDlYFvfjUsAUZC4pD4LD4aI9qp5acPkZ4UJ1ss0z3rNbshRPJW0lo8GtooyMgfKjcdiU3BO3D3iUFeifmI5H3P5QjvOMRYn_ShbmvgP3XA0pwzXoH-38uvLltQh3fO9_xpwq75v8PT_pMObhDcRQLweOYiJ1zZclYiSn_wKlvisj-Hd-4xpt4G9lp3CRC1vWXbUG4SZ7BA"/>
+<img class="w-5 h-5 rounded-full border border-white" data-alt="Young woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_WBZj4OsQidLJ9D1vKdLFb62OhQbnmTuks5H7sBDJCSpm9_sylX1dWI5WpJ7bgFLvx7Qltqy7FKA1Fi1Ghb-DbLa0z9SmvxGcYDuk2noR1TRLNallep0TcQQiTQvx4vSFsHYlG6miR_Moh1hwguCocBCD0awnPBNPzAUlxKpj8WJF8JKTubDm-4NPiqan22oCCjFnGd6hCZDTnCLW5KEC_KjHGqYKWfuhyAZqeE2EhhOKmXL0UuCmUQu0lGHtz9vlXJRZK5FfUCw"/>
+<div class="w-5 h-5 rounded-full bg-slate-200 border border-white flex items-center justify-center text-[8px] font-bold">+12</div>
+</div>
+<p class="text-[10px] font-medium text-slate-400">Objectif: 10M FCFA</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-emerald-dark/5 space-y-4 opacity-70">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">apartment</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-emerald-dark">Tontine Immobilière</h4>
+<p class="text-[10px] text-slate-500 font-medium uppercase">TOUR 2 SUR 24</p>
+</div>
+</div>
+<p class="text-sm font-bold text-primary whitespace-nowrap">15%</p>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 15%"></div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex -space-x-1.5">
+<div class="w-5 h-5 rounded-full bg-slate-200 border border-white flex items-center justify-center text-[8px] font-bold">+5</div>
+</div>
+<p class="text-[10px] font-medium text-slate-400">Objectif: 50M FCFA</p>
+</div>
+</div>
+</div></section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light/90 backdrop-blur-md pb-6 pt-2 px-6 border-t border-slate-200 z-50">
+<div class="flex items-center justify-between relative">
+<a class="flex flex-col items-center gap-1" href="#">
+<span class="material-symbols-outlined text-primary">home</span>
+<p class="text-[10px] font-bold text-primary">ACCUEIL</p>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-50" href="#">
+<span class="material-symbols-outlined text-slate-600">pie_chart</span>
+<p class="text-[10px] font-bold text-slate-600">TONTINES</p>
+</a>
+<div class="absolute left-1/2 -translate-x-1/2 -top-12">
+<button class="w-16 h-16 bg-primary rounded-full border-4 border-emerald-dark flex items-center justify-center shadow-xl">
+<span class="material-symbols-outlined text-white text-3xl font-bold">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 opacity-50" href="#">
+<span class="material-symbols-outlined text-slate-600">history</span>
+<p class="text-[10px] font-bold text-slate-600">ACTIVITÉS</p>
+</a>
+<a class="flex flex-col items-center gap-1 opacity-50" href="#">
+<span class="material-symbols-outlined text-slate-600">person</span>
+<p class="text-[10px] font-bold text-slate-600">PROFIL</p>
+</a>
+</div>
+</nav>
+</body></html>

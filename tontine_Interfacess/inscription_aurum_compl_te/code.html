@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "aurum-cream": "#F5F0E1",
+                        "aurum-gold": "#c9a326",
+                        "aurum-gray": "#867e65",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1rem",
+                        "xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }</script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #F5F0E1;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center">
+<!-- Main Container -->
+<div class="relative flex h-full min-h-screen w-full max-w-[480px] flex-col bg-aurum-cream dark:bg-background-dark overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-transparent p-6 pb-2 justify-between">
+<button class="text-[#171612] dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-[#171612] dark:text-white text-xl font-bold leading-tight tracking-tight flex-1 text-center pr-10">Créer un compte</h2>
+</div>
+<div class="flex-1 px-6 pt-8 pb-12">
+<!-- Central Card -->
+<div class="bg-white dark:bg-zinc-900 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 mb-8 border border-white/20 rounded-xl">
+<div class="mb-8">
+<h3 class="text-[#171612] dark:text-white text-2xl font-bold mb-2">Bienvenue</h3>
+<p class="text-aurum-gray text-base font-normal">Entrez votre numéro pour commencer l'expérience AURUM.</p>
+</div>
+<!-- Input Fields -->
+<div class="space-y-6"><div class="flex flex-col gap-2 w-full">
+<label class="text-[#171612] dark:text-zinc-300 text-sm font-semibold ml-1">Code d'invitation (Optionnel)</label>
+<input class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 h-14 px-5 text-[#171612] dark:text-white focus:ring-2 focus:ring-aurum-gold focus:border-aurum-gold outline-none transition-all placeholder:text-aurum-gray/50" placeholder="Entrez votre code" type="text"/>
+</div>
+<div class="flex flex-col gap-2 w-full">
+<label class="text-[#171612] dark:text-zinc-300 text-sm font-semibold ml-1">Numéro de téléphone</label>
+<div class="flex gap-2 w-full">
+<div class="flex items-center justify-center bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 h-14 text-[#171612] dark:text-white font-medium w-20 shrink-0 rounded-lg">
++225
+</div>
+<input class="flex-1 border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 h-14 px-5 text-[#171612] dark:text-white focus:ring-2 focus:ring-aurum-gold focus:border-aurum-gold outline-none transition-all placeholder:text-aurum-gray/50 min-w-0 rounded-lg" placeholder="01 02 03 04 05" type="tel"/>
+</div>
+</div><div class="flex flex-col gap-4 mt-6">
+<label class="text-[#171612] dark:text-zinc-300 text-sm font-semibold ml-1">Code de vérification</label>
+<div class="flex justify-between gap-2 w-full">
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+<input class="w-10 h-12 text-center rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-xl font-bold text-aurum-gold focus:ring-2 focus:ring-aurum-gold outline-none" maxlength="1" type="text"/>
+</div>
+<div class="flex justify-center text-sm">
+<p class="text-aurum-gray">Vous n'avez pas reçu le code ? <button class="text-aurum-gold font-semibold hover:underline">Renvoyer dans 00:59</button></p>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-aurum-gold hover:bg-[#b08e21] text-[#171612] font-bold text-lg h-14 shadow-lg shadow-aurum-gold/20 transition-all flex items-center justify-center gap-2 mt-4 rounded-lg"><span>Vérifier et continuer</span>
+<span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<!-- Social Options -->
+<div class="space-y-4 px-2">
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-aurum-gray/20"></div>
+<span class="flex-shrink mx-4 text-aurum-gray text-sm font-medium">OU CONTINUER AVEC</span>
+<div class="flex-grow border-t border-aurum-gray/20"></div>
+</div>
+<div class="flex flex-row gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-zinc-50 transition-colors px-2 shadow-sm">
+<img alt="Google" class="size-5" src="https://placeholder.pics/svg/300"/>
+<span class="text-[#171612] dark:text-white font-semibold text-sm">Google</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 h-14 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-black dark:bg-zinc-800 hover:opacity-90 transition-colors px-2 shadow-sm">
+<span class="material-symbols-outlined text-xl text-white">apple</span>
+<span class="text-white font-semibold text-sm">Apple</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="p-8 text-center mt-auto">
+<p class="text-aurum-gray text-xs leading-relaxed max-w-[300px] mx-auto">
+                En continuant, vous acceptez nos 
+                <a class="underline decoration-aurum-gold/40 hover:text-aurum-gold transition-colors" href="#">Conditions d'utilisation</a> 
+                et notre 
+                <a class="underline decoration-aurum-gold/40 hover:text-aurum-gold transition-colors" href="#">Politique de confidentialité</a>.
+            </p>
+<div class="mt-6 flex justify-center gap-4">
+<div class="w-1 h-1 rounded-full bg-aurum-gold/30"></div>
+<div class="w-1 h-1 rounded-full bg-aurum-gold/30"></div>
+<div class="w-1 h-1 rounded-full bg-aurum-gold/30"></div>
+</div>
+</footer>
+</div>
+</body></html>

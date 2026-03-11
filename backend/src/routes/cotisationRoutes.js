@@ -8,11 +8,12 @@ const Joi = require('joi');
 
 const soumettreSchema = Joi.object({
     cycle_id: Joi.string().uuid().required(),
-    montant: Joi.number().positive().required(),
-    nom_expediteur: Joi.string().required(),
-    prenom_expediteur: Joi.string().required(),
-    telephone_expediteur: Joi.string().required(),
-    preuve_paiement_url: Joi.string().uri().allow(null, '')
+    moyen_paiement: Joi.string()
+        .valid('orange_money', 'wave', 'mtn_momo', 'moov_money', 'autre')
+        .required(),
+    telephone_expediteur: Joi.string().max(20).required(),
+    nom_expediteur: Joi.string().max(100).required(),
+    prenom_expediteur: Joi.string().max(100).required(),
 });
 
 const rejectSchema = Joi.object({

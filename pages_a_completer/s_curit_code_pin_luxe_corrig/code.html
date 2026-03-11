@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C9A227",
+                        "emerald-deep": "#0B3D2E",
+                        "deep-black": "#1A1A1A",
+                        "background-light": "#F5F0E1",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>AURUM - Sécurité</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-[#F5F0E1] font-display antialiased text-slate-900">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+<!-- TopAppBar -->
+<header class="flex items-center bg-[#0B3D2E] p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-2xl text-white">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-white">Sécurité</h2>
+<div class="size-12"></div> <!-- Spacer for balance -->
+</header>
+<main class="flex-1 px-4">
+<h3 class="text-[#1A1A1A] text-xl font-bold leading-tight tracking-tight pb-6 pt-6">Code PIN &amp; Biométrie</h3>
+<!-- Settings Card Block -->
+<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100">
+<!-- Action: Modifier PIN -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] justify-between border-b border-slate-50 active:bg-slate-50 cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-[#C9A227] flex items-center justify-center rounded-lg bg-[#C9A227]/10 shrink-0 size-10">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#1A1A1A] text-base font-medium leading-tight">Modifier le code PIN</p>
+<p class="text-slate-500 text-xs">Dernière modification il y a 3 mois</p>
+</div>
+</div>
+<div class="shrink-0">
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Action: Activer la biométrie -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] justify-between border-b border-slate-50">
+<div class="flex items-center gap-4">
+<div class="text-[#C9A227] flex items-center justify-center rounded-lg bg-[#C9A227]/10 shrink-0 size-10">
+<span class="material-symbols-outlined">fingerprint</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#1A1A1A] text-base font-medium leading-tight">Activer la biométrie</p>
+<p class="text-slate-500 text-xs">Utilisez Face ID ou votre empreinte</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-[#C9A227] transition-all">
+<div class="h-full w-[27px] rounded-full bg-white shadow-md"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Action: Supprimer PIN -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] justify-between active:bg-slate-50 cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="text-slate-400 flex items-center justify-center rounded-lg bg-slate-100 shrink-0 size-10">
+<span class="material-symbols-outlined">delete_outline</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#1A1A1A] text-base font-medium leading-tight">Supprimer le code PIN</p>
+<p class="text-slate-500 text-xs">Nécessite une vérification supplémentaire</p>
+</div>
+</div>
+<div class="shrink-0">
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Extra Info Card -->
+<div class="mt-6 p-4 rounded-xl bg-[#0B3D2E] border border-[#0B3D2E]/20 shadow-lg">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-sm text-slate-700 leading-relaxed">
+                        Pour votre sécurité, AURUM vous demandera périodiquement votre code PIN même si la biométrie est activée.
+                    </p>
+</div>
+</div>
+<!-- Decorative Illustration -->
+<div class="mt-12 flex justify-center opacity-30">
+<img alt="Pattern of digital security locks" class="w-32 h-32 object-cover rounded-full grayscale mix-blend-multiply" data-alt="Abstract pattern representing high tech digital security" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbtu2FUeVbfXhX3bD5aMLtc0kDdnb0x361Sksp6iPIHBFvEEBxCDdoY3wDE9XwuPLHuBDZtuG4VPSkMdm1ILrWM579wJGU_5YOYxJocsI3NV9QUeRPPbvHGa3YqOdtqN_YLxSdK6Bq2Y29e6YwKv2Ql9G8JhpxlWaShNRJu65vmcWDfGhWBjOda-35z1Psar5Fxaa2m7KscpgRE6SvMXvBl29bv4LA2eOwDcx_xp6mVsu_VfrdFftfG2MHr4iyQQCINk0iaChtc64"/>
+</div>
+</main>
+<!-- Fixed Confirmation Button -->
+<footer class="p-6 mt-auto">
+<button class="w-full bg-[#C9A227] hover:bg-[#C9A227]/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-[#C9A227]/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Enregistrer les modifications</span>
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<p class="text-center text-slate-400 text-xs mt-4">Version 2.4.0 (AURUM Safe)</p>
+</footer>
+</div>
+</body></html>

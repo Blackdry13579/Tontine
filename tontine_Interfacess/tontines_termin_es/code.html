@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "emerald-dark": "#0B3D2E",
+                        "cream-light": "#F5F0E1",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#201d12",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .active-tab {
+            background-color: #c9a326;
+            color: white;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Bar -->
+<header class="sticky top-0 z-10 bg-cream-light dark:bg-emerald-dark border-b border-primary/10 px-4 py-4 flex items-center justify-between">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-emerald-dark dark:text-cream-light">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-emerald-dark dark:text-cream-light">Mes Tontines</h1>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-emerald-dark dark:text-cream-light">search</span>
+</button>
+</header>
+<!-- Segmented Control -->
+<div class="px-4 py-6">
+<div class="flex p-1 bg-white dark:bg-emerald-dark/50 rounded-full border border-primary/20 shadow-sm">
+<button class="flex-1 py-2 text-sm font-medium rounded-full text-emerald-dark/60 dark:text-cream-light/60">Toutes</button>
+<button class="flex-1 py-2 text-sm font-medium rounded-full text-emerald-dark/60 dark:text-cream-light/60">Actives</button>
+<button class="flex-1 py-2 text-sm font-medium rounded-full bg-primary text-white shadow-md">Terminées</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 px-4 space-y-6 pb-24">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-emerald-dark/30 rounded-xl overflow-hidden shadow-sm border border-primary/10">
+<div class="relative h-40 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern real estate building in West Africa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvA_-Cj2Xqjx1DW2YToAEHWPCm5X_xu9dyAiyZTw5nbzGlZB3Pm_mgbYP-sopXMg-px-i8uXSvpkKkW8ZofKgCczBXE8AiqP1UeipHp-JQdywnKQEIFoJ2W7N6tgL2h4qOoIQyfrSfVCdqRqw9ulg0qP30I4vc6OTMiHVPSv1lqZE-Qn0ih9eykCLd1k-32q2TcJYlYP8gFQgxgltlHXv3d8Otb_uvxBGjIxZSfvG07kavqOtQ5A_uyuqwSp2iITdNrZ5LqK3IukI"/>
+<div class="absolute top-3 right-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                    Terminée
+                </div>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-emerald-dark dark:text-cream-light">Projet Immobilier 2023</h3>
+<p class="text-xs font-semibold text-primary uppercase tracking-widest mt-1">Admin • 2,500,000 FCFA</p>
+</div>
+<button class="px-4 py-1.5 bg-slate-100 dark:bg-emerald-dark/80 text-slate-600 dark:text-cream-light/70 text-xs font-bold rounded-full border border-slate-200 dark:border-primary/20">
+                        ARCHIVES
+                    </button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium text-slate-500">
+<span>12/12 mois complétés</span>
+<span>100%</span>
+</div>
+<div class="w-full h-2 bg-slate-100 dark:bg-emerald-dark/50 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-dark dark:bg-primary" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-emerald-dark/30 rounded-xl overflow-hidden shadow-sm border border-primary/10 opacity-90">
+<div class="relative h-40 w-full overflow-hidden grayscale-[0.5]">
+<img class="w-full h-full object-cover" data-alt="Dakar city view with coastal road" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPUC9G4hQsvR29BMGl1CfYa0nEL02Qc2c2XtQQTzMoX1pniza2b7X43hjOpuEIr8apz0VvatgJlZvAgbPou2Op7j2u-OmJz6t4vguKG4aBpWMONyjsZNseVj3jqkOcknCKRs-ffO9pJ3ZqBu2MxzAxz--PggVLa6F8kfkPfxO6bGMkeJOBM_e-10o-ukomIPwxokR0gMm6vnX-LM2m0COgImmNC4r6rFp9lmAi1ZpYZlzQfx8G_wbZStPksXB2RYsn4Mimfsfgbzw"/>
+<div class="absolute top-3 right-3 bg-emerald-dark/80 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                    Terminée
+                </div>
+</div>
+<div class="p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-emerald-dark dark:text-cream-light">Cercle Voyage Dakar</h3>
+<p class="text-xs font-semibold text-primary uppercase tracking-widest mt-1">Membre • 600,000 FCFA</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-cream-light/60">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span>Cycle terminé en Décembre 2023</span>
+</div>
+<div class="pt-2">
+<div class="w-full h-2 bg-slate-100 dark:bg-emerald-dark/50 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 size-14 bg-primary text-white rounded-full shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-emerald-dark border-t border-primary/10 px-6 py-3 flex justify-between items-center z-20">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-cream-light/40" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group_work</span>
+<span class="text-[10px] font-bold">Tontines</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-cream-light/40" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Portefeuille</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-cream-light/40" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profil</span>
+</a>
+</nav>
+</body></html>

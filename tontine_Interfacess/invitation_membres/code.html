@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#f8f7f6", // Adjusted for crème luxe feel
+                        "background-dark": "#201d12",
+                        "luxe-creme": "#F5F0E1",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.african-pattern {
+    background-color: #f5f0e1;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAokfR77WMvxQ865hOGqYH1pNNsG-gSF16FGu8AwClJ05vCt33raQbPp-pIyyqKxWfznHOav45_SG_cDwc-3o3UDuuULFUZdGwsFaAxN8BrG1DBSzKdpwAIg2gYRiZrR2TOiKnTPZH_ykS5bdkRW2gLZTOco6jMsokKs7Jc2LPu12pcqbacy-NdRYW47k-soHGK2dV2bQdKg74yj5uu1Qk3NK3D-uU9cde04Uj3YYbDeutB4o3JmZ8Obgb7nw9fhEz__6ZORJ1MM1c);
+    /* Subtle geometric texture */
+    opacity: 0.8
+    }
+.gold-gradient {
+    background: linear-gradient(135deg, #c9a326 0%, #e5c158 100%)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-luxe-creme text-[#171612] min-h-screen flex justify-center">
+<!-- Mobile Container -->
+<div class="relative flex h-full min-h-screen w-full max-w-[480px] flex-col bg-luxe-creme overflow-x-hidden shadow-2xl">
+<!-- Header -->
+<div class="flex items-center p-6 pb-2 justify-between">
+<button class="text-[#171612] flex size-10 shrink-0 items-center justify-center rounded-full bg-white/50 hover:bg-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col items-center flex-1">
+<h2 class="text-[#171612] text-lg font-bold leading-tight">Inviter des membres</h2>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">Tontine Solaire</span>
+</div>
+<button class="flex size-10 items-center justify-center rounded-full bg-white/50">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Main Content -->
+<div class="flex flex-col px-6 py-4 space-y-6">
+<!-- Invitation Code Card -->
+<div class="bg-white rounded-xl p-8 shadow-sm border border-primary/10 flex flex-col items-center text-center relative overflow-hidden">
+<!-- Decorative Pattern -->
+<div class="absolute top-0 right-0 w-24 h-24 opacity-5 rotate-45 transform translate-x-8 -translate-y-8">
+<span class="material-symbols-outlined text-9xl">grid_view</span>
+</div>
+<p class="text-[#867e65] text-sm font-medium mb-4">Code d'invitation unique</p>
+<h1 class="text-primary tracking-[0.2em] text-4xl font-bold mb-6">TONT-882X</h1>
+<button class="gold-gradient text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                    Copier le code
+                </button>
+</div>
+<!-- Invitation Link Section -->
+<div class="space-y-3">
+<p class="text-[#867e65] text-xs font-bold uppercase tracking-wider ml-1">Lien de parrainage</p>
+<div class="flex items-center bg-white/80 rounded-full p-2 pl-5 border border-[#867e65]/10">
+<p class="text-sm text-[#171612] truncate flex-1">app.tontine.com/join?ref=tont882x</p>
+<button class="bg-primary/10 text-primary p-2 px-4 rounded-full text-xs font-bold hover:bg-primary/20 transition-colors">
+                        Copier
+                    </button>
+</div>
+</div>
+<!-- Fast Share Buttons -->
+<div class="flex justify-center gap-6 py-2">
+<div class="flex flex-col items-center gap-2">
+<button class="size-14 rounded-full bg-white flex items-center justify-center shadow-md text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">chat</span>
+</button>
+<span class="text-[10px] font-bold text-[#867e65] uppercase">WhatsApp</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="size-14 rounded-full bg-white flex items-center justify-center shadow-md text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">sms</span>
+</button>
+<span class="text-[10px] font-bold text-[#867e65] uppercase">SMS</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="size-14 rounded-full bg-white flex items-center justify-center shadow-md text-[#171612] hover:bg-[#171612] hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">mail</span>
+</button>
+<span class="text-[10px] font-bold text-[#867e65] uppercase">Email</span>
+</div>
+</div>
+<!-- Guest List Section -->
+<div class="flex flex-col space-y-4 pt-4">
+<div class="flex justify-between items-center">
+<h3 class="text-[#171612] text-md font-bold">Membres invités</h3>
+<span class="bg-primary/20 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase">3 En attente</span>
+</div>
+<!-- List Items -->
+<div class="space-y-3">
+<!-- Member 1 -->
+<div class="flex items-center justify-between bg-white/40 p-3 rounded-xl border border-white">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full border-2 border-primary/30 overflow-hidden bg-[#e5e7eb]">
+<img alt="Avatar Amadou Diop" class="w-full h-full object-cover" data-alt="Portrait of a West African man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD81oLB7scbTNru3gy7qYKQpmICt6O5lNA6TNeVbjfKv2gUu_MXatRJEMyBYD2byeti-e2oqpNHzgKGlLoRbkf3KmjSyTLOGojiVA7rlPeqiT1so57FUIgHYXwNjB9Amuk1INRf5fuIGutxkHQ-IcTMxPnpi9uV9yz5qDVSRKaOk8NMSJmNEZQT0e2gSubbonOP3HjleNai2moBjxJ0jiAz6apoH5WiVCRj69y19pmRebgNwT6gTMZzYfDO1_oqB7b-0h6anFraeq4"/>
+</div>
+<div>
+<p class="text-sm font-bold text-[#171612]">Amadou Diop</p>
+<p class="text-[10px] text-[#867e65]">Invité il y a 2h</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase italic">En attente</span>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center justify-between bg-white/40 p-3 rounded-xl border border-white">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full border-2 border-primary/30 overflow-hidden bg-[#e5e7eb]">
+<img alt="Avatar Fatou Sow" class="w-full h-full object-cover" data-alt="Portrait of a West African woman with traditional headwrap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOzpbNh8EcLrZ01kRj-93AWaGGNZUKnBUSI5kw8ZtflBPnKdTxurFKjaup-huGZ9vNAf6d6NJJ3Y5NqrjMZrxoMe9H6-MKeF6hx-COsLCMkMVcuARzEpjcCe63N8ZqPiqtc4L6eHbVgi8YWZcJ05SA9g7IucoZ61OPsUg-arCdeM9puFeBHf-10PKqxOGCHNTSaWpJ64I2Z6jGFk8MBYZrWjdhuLWSaDUSf9tRQYAOdzP43-2JSAu2nTG0mZ01TXvCQF6uQbUi3gg"/>
+</div>
+<div>
+<p class="text-sm font-bold text-[#171612]">Fatou Sow</p>
+<p class="text-[10px] text-[#867e65]">Invité hier</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-white bg-primary px-3 py-1 rounded-full uppercase">Rejoint</span>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center justify-between bg-white/40 p-3 rounded-xl border border-white opacity-80">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full border-2 border-primary/30 overflow-hidden bg-[#e5e7eb]">
+<img alt="Avatar Koffi Mensah" class="w-full h-full object-cover" data-alt="Portrait of a professional man with short hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATwqFBsmiaAiEi574rerXk-opuJOHcJD_hATO363oVyMk8PHyNuexi4ZmtdVxbeXNpuDyQeD8Z6RTV0dK0Mp0AujtwyxU3IR8YooxgfX_RabFxnKGtUTEIvgHk15oKJWlXmW-pozKyanoaWMkwy_-E_FTbmWYqHFyCMulJpg234CLUBz8bOqqSEZco2FF88hoTDEevJazjafqKdg5A7wJyRDSvnlXCLyFYL2dvGid8ytvtICC9WUiNHVeZoWkeGLmjVwY_hMhmUIM"/>
+</div>
+<div>
+<p class="text-sm font-bold text-[#171612]">Koffi Mensah</p>
+<p class="text-[10px] text-[#867e65]">Invité il y a 3 jours</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase italic">En attente</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for Scroll -->
+<div class="h-24"></div>
+<!-- Bottom Navigation (Partial View for Screen Context) -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white border-t border-[#f4f3f0] px-6 py-3 flex justify-between items-center rounded-t-xl">
+<a class="flex flex-col items-center gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Accueil</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">groups</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Tontines</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">person_add</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Membres</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Profil</p>
+</a>
+</div>
+</div>
+</body></html>

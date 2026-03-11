@@ -46,18 +46,7 @@ const getMe = async (req, res, next) => {
 
 const updateMe = async (req, res, next) => {
     try {
-        const { nom, prenom, email, ville, adresse } = req.body;
-
-        // Logic to determine if profile is complete
-        // Requirement: "Si nom ET prenom sont fournis -> profil_complet = true"
-        const profil_complet = (nom && prenom) ? true : false;
-
-        const userData = {
-            ...req.body,
-            profil_complet
-        };
-
-        const user = await userModel.update(req.user.id, userData);
+        const user = await userModel.update(req.user.id, req.body);
 
         if (!user) return apiResponse.error(res, 'Erreur lors de la mise à jour', 500);
 

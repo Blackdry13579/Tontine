@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reçu de Paiement - TontineApp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "card-light": "#ffffff",
+                        "accent-success": "#2e7d32"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .ticket-cut {
+            position: relative;
+        }
+        .ticket-cut::before, .ticket-cut::after {
+            content: '';
+            position: absolute;
+            bottom: 80px;
+            width: 20px;
+            height: 20px;
+            background-color: #F5F0E1;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .dark .ticket-cut::before, .dark .ticket-cut::after {
+            background-color: #201d12;
+        }
+        .ticket-cut::before { left: -10px; }
+        .ticket-cut::after { right: -10px; }
+        
+        .dashed-line {
+            border-top: 2px dashed #e5e7eb;
+            width: 100%;
+            position: absolute;
+            bottom: 90px;
+            left: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="flex items-center px-6 py-4 justify-between bg-transparent">
+<button class="text-background-dark dark:text-background-light hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-background-dark dark:text-background-light text-lg font-bold tracking-tight">Reçu de paiement</h1>
+<button class="text-background-dark dark:text-background-light hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</header>
+<main class="flex-1 px-6 pb-8 flex flex-col items-center max-w-md mx-auto w-full">
+<!-- Official Receipt Card -->
+<div class="w-full bg-card-light dark:bg-[#2d2a1e] rounded-xl shadow-xl overflow-hidden relative ticket-cut border border-primary/10">
+<!-- Header Section with Logo and Badge -->
+<div class="p-6 text-center border-b border-gray-100 dark:border-white/5">
+<div class="flex justify-center mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+</div>
+</div>
+<h2 class="text-xs font-bold text-primary tracking-[0.2em] uppercase mb-2">Reçu de Cotisation</h2>
+<div class="inline-flex items-center px-4 py-1 rounded-full bg-accent-success/10 text-accent-success text-sm font-bold border border-accent-success/20">
+<span class="material-symbols-outlined text-base mr-1">check_circle</span>
+                    PAYÉ ✓
+                </div>
+</div>
+<!-- Amount Section -->
+<div class="py-8 px-6 text-center bg-primary/5 dark:bg-primary/10">
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-1">Montant versé</p>
+<h3 class="text-4xl font-bold text-background-dark dark:text-white">25,000 <span class="text-xl font-medium">FCFA</span></h3>
+</div>
+<!-- Transaction Details -->
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Contributeur</span>
+<span class="text-background-dark dark:text-white font-semibold">Jean Dupont</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Groupe</span>
+<span class="text-background-dark dark:text-white font-semibold">Tontine Paris Sud</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Date &amp; Heure</span>
+<span class="text-background-dark dark:text-white font-semibold">12 Oct 2023, 14:30</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Moyen de paiement</span>
+<div class="flex items-center gap-1">
+<span class="text-background-dark dark:text-white font-semibold">Mobile Money</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">ID Transaction</span>
+<span class="text-primary font-mono font-medium">TXN-987654321</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">Référence</span>
+<span class="text-background-dark dark:text-white font-semibold">REF-ABC-XYZ</span>
+</div>
+</div>
+<!-- Visual Separator (Dashed line for the "ticket" effect) -->
+<div class="h-10 relative">
+<div class="dashed-line"></div>
+</div>
+<!-- QR Code Section -->
+<div class="p-6 pt-0 flex flex-col items-center">
+<div class="p-3 bg-white rounded-lg border border-gray-100 mb-4">
+<img alt="QR Code de vérification du reçu" class="w-24 h-24" data-alt="Code QR pour vérification transactionnelle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtdNW8Vrlg3pqMwU0DPCmbjoqfQKeeGJXxVkGLfnIXyZmHZGBSdobDwS9852hJ9dNbR3-Xdp2xxAFhQZ5ml_Rsl0LqhwNYWfRj73-MaS2zRTpRe4F7AFVp9EOjm1n6x22Zb6cacKEu3NfzciEmcCDKWrtRO5R24pCYkYHrweMnplfIJq2N7xO35f6aPXfdKEVG1o1wqOQpdk-Nta-ZX_rlHLpkF-lZHUhVhwEnc9ddzHa_GLhUfEfCObKjnS7RSXR8GiN4TLSjBf4"/>
+</div>
+<p class="text-[10px] text-gray-400 uppercase tracking-widest text-center">
+                    Document officiel • <span class="text-primary">www.tontineapp.com</span>
+</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full mt-8 space-y-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-full flex items-center justify-center gap-2 transition-all transform active:scale-[0.98] shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">download</span>
+                Télécharger PDF
+            </button>
+<button class="w-full bg-white dark:bg-white/5 border border-primary/20 text-background-dark dark:text-white font-bold py-4 rounded-full flex items-center justify-center gap-2 transition-all hover:bg-gray-50 dark:hover:bg-white/10">
+<span class="material-symbols-outlined text-primary">share</span>
+                Partager
+            </button>
+</div>
+<!-- Bottom Informational Text -->
+<p class="mt-8 text-xs text-gray-500 dark:text-gray-400 text-center px-4">
+            Ce document sert de preuve de paiement pour votre cotisation. Conservez-le précieusement ou exportez-le en PDF pour vos archives.
+        </p>
+</main>
+<!-- Bottom Padding for mobile viewports -->
+<div class="h-6"></div>
+</body></html>

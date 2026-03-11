@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "luxury-gold": "#b08d1a",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Lancer Distribution - Tontine Luxe</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#171612] dark:text-[#f8f7f6] min-h-screen flex justify-center">
+<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- Header -->
+<div class="flex items-center p-6 pb-2 justify-between">
+<button class="text-[#171612] dark:text-[#f8f7f6] flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-[#171612] dark:text-[#f8f7f6] text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-12">Nouvelle distribution</h2>
+</div>
+<!-- Section Bénéficiaire -->
+<div class="flex p-6 @container">
+<div class="flex w-full flex-col gap-6 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-36 w-36 border-4 border-primary shadow-xl" data-alt="Portrait photo of Moussa Traoré smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAh51QqfX6flLLKkVCRpFcdbecJrgpseX2GLXq4sSe7pXj7uUHDPoDZElH3S0PeGPjvdQIZ8eI5PbBRdJBw8Ph_k4mbYSFtxrzF9x2NJBtyOmcGozDXXIvsz2haewLLIYteUhkPetGWTiQGGOZ1A3kmg_A7Zmte4oIOYzU3wTeYCXQci0b7CY9R2GmIlHn_zZbA9tC5Z887y7gcsnfJMBjb8vvsjsPYUMGeFswi-Gn4Yy-thXw2YKzuZES2CmSDcQieLo_xPZxb8yo");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white p-1 rounded-full border-4 border-background-light">
+<span class="material-symbols-outlined text-sm block">verified</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-[#171612] dark:text-white text-2xl font-bold leading-tight tracking-tight text-center">Moussa Traoré</p>
+<p class="text-primary font-medium text-sm uppercase tracking-widest text-center mt-1">Bénéficiaire du cycle</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Montant Principal -->
+<div class="px-6 py-4 flex flex-col items-center">
+<span class="text-[#867e65] dark:text-gray-400 text-sm font-medium uppercase tracking-[0.2em] mb-2">Montant à verser</span>
+<h1 class="text-primary tracking-tight text-[42px] font-bold leading-tight text-center pb-2">500,000 FCFA</h1>
+<div class="h-1 w-16 bg-primary/30 rounded-full mt-2"></div>
+</div>
+<!-- Récapitulatif Table -->
+<div class="px-6 mt-4">
+<div class="bg-white/50 dark:bg-white/5 rounded-3xl p-6 border border-primary/10 backdrop-blur-sm">
+<h3 class="text-[#171612] dark:text-white text-base font-bold leading-tight tracking-tight pb-4 border-b border-primary/10">Détails financiers</h3>
+<div class="flex justify-between gap-x-6 py-4 border-b border-primary/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">group</span>
+<p class="text-[#867e65] dark:text-gray-400 text-sm font-medium leading-normal">Cotisations reçues</p>
+</div>
+<p class="text-[#171612] dark:text-white text-sm font-bold leading-normal text-right">11 / 12</p>
+</div>
+<div class="flex justify-between gap-x-6 py-4 border-b border-primary/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+<p class="text-[#867e65] dark:text-gray-400 text-sm font-medium leading-normal">Frais de gestion (10%)</p>
+</div>
+<p class="text-[#171612] dark:text-white text-sm font-bold leading-normal text-right">50,000 FCFA</p>
+</div>
+<div class="flex justify-between gap-x-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+<p class="text-[#867e65] dark:text-gray-400 text-sm font-medium leading-normal">Montant Net</p>
+</div>
+<p class="text-primary text-base font-black leading-normal text-right">500,000 FCFA</p>
+</div>
+</div>
+</div>
+<!-- Méthode de Paiement -->
+<div class="px-6 mt-8">
+<h3 class="text-[#171612] dark:text-white text-sm font-bold uppercase tracking-widest px-1 mb-4">Méthode de paiement</h3>
+<div class="grid grid-cols-2 gap-3 p-1 bg-primary/10 dark:bg-primary/5 rounded-full">
+<button class="bg-primary text-white py-3 px-4 rounded-full flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95">
+<span class="material-symbols-outlined text-xl">smartphone</span>
+<span class="text-sm font-bold">Mobile Money</span>
+</button>
+<button class="text-[#171612] dark:text-[#f8f7f6] py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-xl">account_balance</span>
+<span class="text-sm font-bold">Virement</span>
+</button>
+</div>
+</div>
+<!-- Spacer -->
+<div class="flex-grow min-h-[40px]"></div>
+<!-- Bouton de confirmation -->
+<div class="p-6 pb-10">
+<button class="w-full bg-primary hover:bg-luxury-gold text-white rounded-full py-5 px-8 flex items-center justify-center gap-3 shadow-[0_10px_30px_-10px_rgba(201,163,38,0.6)] transition-all active:scale-95 group">
+<span class="text-lg font-bold tracking-wide">Confirmer la distribution</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">lock</span>
+</button>
+<p class="text-center text-[#867e65] text-xs mt-4 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-xs">verified_user</span>
+                Transaction sécurisée et irréversible
+            </p>
+</div>
+</div>
+</body></html>

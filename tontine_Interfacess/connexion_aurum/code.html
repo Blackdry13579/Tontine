@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURUM - Connexion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "cream-card": "#FFFFFF",
+                        "gold-dark": "#a8871d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .luxury-pattern {
+            background-image: radial-gradient(#c9a326 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#201d12] min-h-screen relative overflow-x-hidden">
+<!-- Subtle Background Pattern -->
+<div class="absolute inset-0 luxury-pattern pointer-events-none"></div>
+<div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto px-6 py-8">
+<!-- Header -->
+<header class="flex items-center justify-between mb-10">
+<button class="size-12 flex items-center justify-center rounded-full bg-white/50 backdrop-blur-sm border border-primary/10 shadow-sm text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-semibold tracking-tight">Connexion</h1>
+<div class="size-12"></div> <!-- Spacer for centering -->
+</header>
+<!-- Brand/Hero Section -->
+<div class="mb-8 text-center">
+<div class="inline-block p-4 rounded-xl bg-primary/10 mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">account_balance_wallet</span>
+</div>
+<h2 class="text-2xl font-bold text-[#171612] mb-2">Bienvenue sur AURUM</h2>
+<p class="text-[#867e65] text-sm">Accédez à votre compte exclusif et gérez vos actifs avec sérénité.</p>
+</div>
+<!-- Login Card -->
+<div class="bg-white rounded-xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-primary/5 mb-8">
+<div class="space-y-6">
+<!-- Phone Number Input -->
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-[#867e65] ml-1">Numéro de téléphone</label>
+<div class="relative flex items-center">
+<div class="absolute left-4 flex items-center gap-2 border-r border-[#e5e3dc] pr-3 h-6">
+<img alt="Sénégal Flag" class="w-5 h-3.5 rounded-sm object-cover" data-alt="Flag of Senegal for phone country code" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgMboC46wJbgUL344X1iTmV-A2SLdB7mX7f2XynKWNEEi3UeGSBS3sZOpG3AnBz3fqKBGPO4qWdVtpqh7cosPABIxP6x1uwH2jokr3TcWOtZB6JvKyliMwqQQTs7ACRgb3nZRJf1o2pHiGx9HnNQvJWxuFm0SgQP-Dc3Q5rNUpai8KYufpSfPVw8jtsxnoquU6oodGDJ94ZQHCK0RycaDqwxg60Yid4FNp78JG-Bd9CCSEvH_Upeo1Mu1-Y2seFqArP7RPMgEGawM"/>
+<span class="text-sm font-medium">+221</span>
+</div>
+<input class="w-full pl-24 pr-4 py-4 bg-background-light/30 border border-[#e5e3dc] rounded-xl focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-[#867e65]/50" placeholder="77 000 00 00" type="tel"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-[#867e65] ml-1">Mot de passe</label>
+<div class="relative flex items-center">
+<input class="w-full px-4 py-4 bg-background-light/30 border border-[#e5e3dc] rounded-xl focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-[#867e65]/50" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-[#867e65] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<div class="flex justify-end">
+<a class="text-xs font-medium text-primary hover:text-gold-dark underline underline-offset-4" href="#">Mot de passe oublié ?</a>
+</div>
+</div>
+<!-- Main Login Button -->
+<button class="w-full bg-primary hover:bg-gold-dark text-white font-bold py-5 rounded-full shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-4">
+                    Se connecter
+                </button>
+</div>
+</div>
+<!-- Social Login -->
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="h-[1px] flex-1 bg-[#e5e3dc]"></div>
+<span class="text-xs font-medium text-[#867e65] uppercase tracking-widest">Ou continuer avec</span>
+<div class="h-[1px] flex-1 bg-[#e5e3dc]"></div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 flex items-center justify-center py-4 bg-white border border-[#e5e3dc] rounded-full hover:bg-background-light transition-colors shadow-sm">
+<img alt="Google Logo" class="w-5 h-5 mr-2" data-alt="Google logo icon for social login" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdZmF-se5oES1TuB8mtIpkhcv89nL25QgJ8GhgV1AQa5WEd8S_84r6g0P15FF_FRzJ_7_vKhq2uX8QHn16mu5elebdL-P80EVlgz6MTCpWmV4FvkztVaejxAuYM_WhggA8_dmyJ1fpouroZgPkmPrFn6BZ6JA5_S7pPmbT2ecXF3dMeNtvxUmurv8pXuqBYAWh6MPRQo2SaZA3bb_VLcoKySjbTfYsZFu5mcf3U7Nszs8iVTVJjKQNzB4hG3lGIRaVB29sMCuRlOQ"/>
+<span class="text-sm font-semibold">Google</span>
+</button>
+<button class="flex-1 flex items-center justify-center py-4 bg-black text-white rounded-full hover:bg-gray-900 transition-colors shadow-sm">
+<span class="material-symbols-outlined mr-2 !text-xl">ios</span>
+<span class="text-sm font-semibold">Apple</span>
+</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto pt-10 pb-4 text-center">
+<p class="text-sm text-[#867e65]">
+                Pas encore de compte ? 
+                <a class="text-primary font-bold ml-1 hover:underline underline-offset-4" href="#">Créer un compte</a>
+</p>
+</footer>
+</div>
+</body></html>

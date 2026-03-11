@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Suivi des Paiements - Organisateur Tontine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326", // Antique Gold
+                        "emerald-dark": "#0B3D2E", // Emerald Green
+                        "background-light": "#F5F0E1", // Cream
+                        "background-dark": "#201d12",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", // 16px
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #F5F0E1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c9a32633;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden">
+<!-- Header Section -->
+<header class="sticky top-0 z-20 bg-background-light/80 backdrop-blur-md dark:bg-background-dark/80 px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-6">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm text-emerald-dark dark:text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-emerald-dark dark:text-slate-100">Suivi des paiements</h1>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm text-emerald-dark dark:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex border-b border-primary/20 gap-4 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent pb-3 pt-2 text-emerald-dark/60" href="#">
+<span class="text-sm font-semibold">Aperçu</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent pb-3 pt-2 text-emerald-dark/60" href="#">
+<span class="text-sm font-semibold">Membres</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-primary pb-3 pt-2 text-primary" href="#">
+<span class="text-sm font-bold">Paiements</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent pb-3 pt-2 text-emerald-dark/60" href="#">
+<span class="text-sm font-semibold">Journal</span>
+</a>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-6 space-y-6">
+<!-- Global Status Card -->
+<section class="bg-emerald-dark text-white rounded-xl p-6 shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">payments</span>
+</div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="space-y-1">
+<p class="text-primary font-medium text-sm tracking-widest uppercase">Cycle d'Octobre</p>
+<h2 class="text-3xl font-bold">12 / 15 <span class="text-lg font-normal opacity-80 text-white/70">payés</span></h2>
+<p class="text-xs text-white/60">Objectif: 750,000 CFA</p>
+</div>
+<!-- Progress Ring -->
+<div class="relative flex items-center justify-center">
+<svg class="h-20 w-20 transform -rotate-90">
+<circle class="text-white/10" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-primary" cx="40" cy="40" fill="transparent" r="34" stroke="currentColor" stroke-dasharray="213.6" stroke-dashoffset="42.7" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-sm font-bold">80%</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+<div class="flex -space-x-2">
+<img class="h-8 w-8 rounded-full border-2 border-emerald-dark bg-slate-200" data-alt="Avatar of a tontine member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnJeWcgl7W6vUHRA9VqXSSGO2SdGRiSdJvYmnz7U8K7WuNKz5ZPbOQyWZDh5F54mV9noF6wiXAFnHiZhQprDd4wz_O2JxT1QzmIi4D8hXHy7wFail2Wzew_DCmLlxXitQ703ZppFn7MnN-klvLOoD7G3hX6gd1gBc05u6-o1NFZQgLqwknrfTwZpkGHiONpkc9qeXJZ2Om0Alfmx_b4zOwEAcboyNS91nlMskWYS9k9vfnn4dd7Q1XWLoOwKsSImnvQaBfLARl7F0"/>
+<img class="h-8 w-8 rounded-full border-2 border-emerald-dark bg-slate-200" data-alt="Avatar of a tontine member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM6Vox2wITFV4Qo2plzPBYUtZIC6uYtV7la1P6RPOe0NhsX1HkMUh51NqGVFYygBs9gIlX8njkKIYYCqLDw6evTRJSkNwldI3kOL2MXzsaiubQHzmeNUKGBK_sEBtAOyLUApeI0JVXV7r8aYd9IgTcWuR-94rV8ZiPsVitKouvJ-TBwCdtxgUKNbKEl9OKFcvN7A9NrIh_C3meSlEHrXpR7DuNB57tK-K3v2SoRaIDvL2Nh5f74NEvMbh7vlFcie5IZBkwAO4fY18"/>
+<img class="h-8 w-8 rounded-full border-2 border-emerald-dark bg-slate-200" data-alt="Avatar of a tontine member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuJRZuBWDb4vqxN8CNXpHewMaSA_ZgGUTMsJnJrk6poD2mIqO4eTa0XNNcqhBbFX3SRH4iKvp2Y0UmgTHTZ7VB1sRPoofpq13-Yq4R9xdlsTiozpHB1uTxa-dG1LeVzwPqY3h-nsZZ9r5KTlUSnPuGmV9fUhpSk1YUq1kSSiveVNNrMjgJkgykZ13J7cMy9JPlNs4HLgwzN1odvVjpu5mVNDnTjTLFNGh_gltsKE4cPZoAueVU7vTV032UW8O4G84yAE_1i-7c6_E"/>
+<div class="h-8 w-8 rounded-full border-2 border-emerald-dark bg-primary flex items-center justify-center text-[10px] font-bold">+9</div>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                        VOIR DÉTAILS <span class="material-symbols-outlined text-xs">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Filters/Search -->
+<div class="flex gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-emerald-dark/40 text-sm">search</span>
+<input class="w-full bg-white dark:bg-slate-800 border-none rounded-full py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 placeholder:text-emerald-dark/30" placeholder="Rechercher un membre..." type="text"/>
+</div>
+<button class="bg-white dark:bg-slate-800 h-10 w-10 flex items-center justify-center rounded-full text-emerald-dark dark:text-primary shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Member Payment List -->
+<div class="space-y-3 pb-24">
+<h3 class="text-sm font-bold text-emerald-dark/60 dark:text-slate-400 uppercase tracking-widest px-1">Liste des cotisations</h3>
+<!-- Paid Member Item -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl flex items-center justify-between shadow-sm border border-emerald-dark/5">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="h-12 w-12 rounded-full border-2 border-primary/20 p-0.5" data-alt="Fatou Diop profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyZmOfP5x_lpgqmcu_exiP3aOqdwXyKQDAahxEdh1TP_xVLRMmMzmaAth-k-Dibh5VLYZdIH5F4Z3yd8Q4ZW1XeVb9rZ_VRJpnWH2Fuzj83jNI0B7QoKJJb233m0mGwgQCGiHdRHTmqE5saDPIRlN5tcywwOeCTr1lxdazdowdCPZhb7pYPy-ep-L7xQIFKBr_i5e9d7arJvd28HZ6evcI5OCOnNbEesyY7g8BiG0LGPQAOQhUxA2l_SxI_AmYtruWFdv6YjPCkhE"/>
+<div class="absolute -bottom-1 -right-1 bg-green-500 h-4 w-4 rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white font-bold">check</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-emerald-dark dark:text-slate-100">Fatou Diop</p>
+<p class="text-xs text-slate-500">Payé le 14 Oct • 50k CFA</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full text-[10px] font-bold tracking-tighter">PAYÉ</span>
+</div>
+<!-- Pending Member Item -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl flex items-center justify-between shadow-sm border border-emerald-dark/5">
+<div class="flex items-center gap-4">
+<img class="h-12 w-12 rounded-full border-2 border-primary/20 p-0.5" data-alt="Omar Sy profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqCnVFPHptxJf_uoDDI33RRPYSxMQoShf7hUpLYFc0lNOFkmFVJFNkM1IOaDz08PoH70M4NN73S0vRuEBTCIBHEOoQJf5UZZ1VORpy4kcVn2JCc0mh3ZAbSuv0sStNV8Vqsmt1t7uLuQdw-PwPKctVmcqyClfVi97Ynwpbb5Yh0bErwmOLkEu7eu7NgWxqftJMKV_POvw5QSA9WJOkTJ2bK-goH__I3dbUIMBSDC_a3t-z5KcsqxiGorRIqh0rbrGRNLW0TIbFo3Y"/>
+<div>
+<p class="font-bold text-emerald-dark dark:text-slate-100">Omar Sy</p>
+<p class="text-xs text-slate-500">Prévu aujourd'hui • 50k CFA</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 rounded-full text-[10px] font-bold tracking-tighter">EN ATTENTE</span>
+<button class="h-8 w-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">notifications</span>
+</button>
+</div>
+</div>
+<!-- Late Member Item -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl flex items-center justify-between shadow-sm border-l-4 border-l-red-500">
+<div class="flex items-center gap-4">
+<img class="h-12 w-12 rounded-full border-2 border-primary/20 p-0.5" data-alt="Ibrahim Kone profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7I5Ro8Ju5GKRIJGVNb454XJGCzFW16cJ_eJYfKlaZbjEiJpkow20lED8Rl1OYEGCCcOuN4QrA-t4pYD8SKD6yANP4-5vA18wyW8KYbS54Dcyq55wfAjzAqofJoS2coS2rU-FNClnLVM2lcKdfcAqJ5gulKNtBAro0353a9UwuVgnMWxGG0-aSFnYxO8KsU-VjEp2sDxqJTC-RckjSnf9JVTxg-Sh0rKn95z0atB1GDMKD2JiJCHSB9kEiyhUT0q8kP0P8ao5Of-E"/>
+<div>
+<p class="font-bold text-emerald-dark dark:text-slate-100">Ibrahim Koné</p>
+<p class="text-xs text-red-500 font-medium">Retard: 3 jours • 50k CFA</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-full text-[10px] font-bold tracking-tighter">RETARD</span>
+<button class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">notifications_active</span>
+</button>
+</div>
+</div>
+<!-- Late Member Item 2 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl flex items-center justify-between shadow-sm border-l-4 border-l-red-500">
+<div class="flex items-center gap-4">
+<img class="h-12 w-12 rounded-full border-2 border-primary/20 p-0.5" data-alt="Zainab Toure profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi9MxCFYpUGcrp3aP174ITX-6X5Tm9BfYaj8Bk_2WyKw9grj4njRa-yOX-RWfEYYK9g6RDNnHwp_Phf83bkmsymtJLRpeH6zaxCeIb0JPUaXEMroXWiCou7HYPSLj0mmwwGghvlexMrzG7DWDSprFegELwiZTsndv7lP2xbIIr537K-npb6HoI9a_MUShSj6Z7Dxk-Xbr80Src8mQL0R5sN1pjg1eFgzNVYQBx7rp9S-baPgpqRERjhTPQdbRnshjba_T_n-2sJLk"/>
+<div>
+<p class="font-bold text-emerald-dark dark:text-slate-100">Zainab Touré</p>
+<p class="text-xs text-red-500 font-medium">Retard: 1 jour • 50k CFA</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-full text-[10px] font-bold tracking-tighter">RETARD</span>
+<button class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">notifications_active</span>
+</button>
+</div>
+</div>
+<!-- Paid Member Item 2 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl flex items-center justify-between shadow-sm border border-emerald-dark/5">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img class="h-12 w-12 rounded-full border-2 border-primary/20 p-0.5" data-alt="Bakary Gassama profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw5Vm1TRhpRbJgwKuQcCx5ZdNmAKj8-68lN9k-o9VuqeAzeymz2UJl4ATlgrNqhs1fwNr7M8zWAcURPT_eM80D6TVVmHsAr8nwk_H6Z3SSKsmXFgkA9N2A4ngWhEch9E7wbLdkt5PBoKb4MfNfTSTKPwBJvplqkFJtyFLrJkavTvUsdxmKbXTfV_zEF7wK4x0ct8EUiAV-DY7xWex5KL_I6FEKGlpwqcjHkTfexAnUfBulr3udX9dhUARHRPiM1ATzA79VRhjGpXE"/>
+<div class="absolute -bottom-1 -right-1 bg-green-500 h-4 w-4 rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white font-bold">check</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-emerald-dark dark:text-slate-100">Bakary Gassama</p>
+<p class="text-xs text-slate-500">Payé le 12 Oct • 50k CFA</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full text-[10px] font-bold tracking-tighter">PAYÉ</span>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-24 right-4 max-w-md w-full pointer-events-none flex justify-end px-4">
+<button class="pointer-events-auto h-14 px-6 rounded-full bg-emerald-dark text-white flex items-center gap-2 shadow-2xl border border-primary/30">
+<span class="material-symbols-outlined">send</span>
+<span class="text-sm font-bold tracking-wide">RAPPELER TOUT LE MONDE</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full max-w-md bg-white dark:bg-background-dark border-t border-emerald-dark/5 px-4 pb-8 pt-2 z-30">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-emerald-dark/40 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-emerald-dark/40 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] font-medium">Tontines</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">account_balance_wallet</span>
+<span class="text-[10px] font-bold">Paiements</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-emerald-dark/40 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-emerald-dark/40 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person_pin</span>
+<span class="text-[10px] font-medium">Profil</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

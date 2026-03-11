@@ -17,37 +17,37 @@ const findById = async (id) => {
 };
 
 const create = async (userData) => {
-    const { firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme, ville, adresse, profil_complet } = userData;
+    const { firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme, ville, profil_complet } = userData;
     const { rows } = await pool.query(
-        `INSERT INTO users (firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme, ville, adresse, profil_complet)
-     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        `INSERT INTO users (firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme, ville, profil_complet)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
      RETURNING *`,
-        [firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme || 'membre', ville, adresse, profil_complet || false]
+        [firebase_uid, telephone, email, nom, prenom, photo_url, role_systeme || 'membre', ville, profil_complet || false]
     );
     return rows[0];
 };
 
 const update = async (id, userData) => {
-    const fields = [];
-    const values = [];
-    let idx = 1;
+    const { nom, prenom, email, ville, photo_url } = userData;
 
-    const allowedFields = ['nom', 'prenom', 'photo_url', 'email', 'telephone', 'ville', 'adresse', 'profil_complet'];
+    // SQL attendu par le workflow :
+    // UPDATE users SET nom=$1, prenom=$2, email=$3, ville=$4, photo_url=$5,
+    // profil_complet = CASE WHEN $1 IS NOT NULL AND $2 IS NOT NULL THEN true ELSE profil_complet END,
+    // date_modification = NOW()
+    // WHERE id=$6
 
-    for (const [key, value] of Object.entries(userData)) {
-        if (allowedFields.includes(key)) {
-            fields.push(`${key} = $${idx}`);
-            values.push(value);
-            idx++;
-        }
-    }
-
-    if (fields.length === 0) return null;
-
-    values.push(id);
     const { rows } = await pool.query(
-        `UPDATE users SET ${fields.join(', ')}, date_modification = NOW() WHERE id = $${idx} RETURNING *`,
-        values
+        `UPDATE users 
+         SET nom = COALESCE($1, nom), 
+             prenom = COALESCE($2, prenom), 
+             email = COALESCE($3, email), 
+             ville = COALESCE($4, ville), 
+             photo_url = COALESCE($5, photo_url),
+             profil_complet = CASE WHEN $1 IS NOT NULL AND $2 IS NOT NULL THEN true ELSE profil_complet END,
+             date_modification = NOW()
+         WHERE id = $6
+         RETURNING *`,
+        [nom, prenom, email, ville, photo_url, id]
     );
     return rows[0];
 };

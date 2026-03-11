@@ -60,6 +60,14 @@ const findById = async (id, userId) => {
     );
 
     tontine.stats = stats.rows[0];
+
+    // Get current cycle ID
+    const currentCycle = await pool.query(
+        'SELECT id FROM cycles WHERE tontine_id = $1 AND statut = \'en_cours\' ORDER BY numero_cycle DESC LIMIT 1',
+        [id]
+    );
+    tontine.current_cycle_id = currentCycle.rows.length > 0 ? currentCycle.rows[0].id : null;
+
     return tontine;
 };
 

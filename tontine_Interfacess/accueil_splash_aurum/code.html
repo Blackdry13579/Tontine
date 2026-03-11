@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURUM - Votre Épargne, Votre Communauté</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "emerald-dark": "#0B3D2E",
+                        "cream": "#F5F5DC",
+                        "background-light": "#0B3D2E",
+                        "background-dark": "#0B3D2E",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .bogolan-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0ZM30 10L10 30L30 50L50 30L30 10Z' fill='%23c9a326' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #e6c667 0%, #c9a326 50%, #a6821d 100%);
+        }
+        .text-gold {
+            background: linear-gradient(135deg, #f3d98c 0%, #c9a326 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-emerald-dark font-display text-cream overflow-x-hidden antialiased">
+<!-- Main Splash Container -->
+<div class="relative flex min-h-screen w-full flex-col items-center justify-between p-6 bogolan-pattern overflow-hidden">
+<!-- Top Decorative Element (Optional but adds to luxury feel) -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 opacity-20 gold-gradient rounded-b-full"></div>
+<!-- Spacer for top layout -->
+<div class="h-20"></div>
+<!-- Central Identity -->
+<div class="flex flex-col items-center gap-8 w-full animate-fade-in">
+<!-- Circular Coin Logo -->
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/30 blur-2xl rounded-full scale-110"></div>
+<div class="relative size-48 rounded-full gold-gradient shadow-[0_0_50px_rgba(201,163,38,0.3)] flex items-center justify-center p-1 border-2 border-white/20">
+<div class="size-full rounded-full border-[1.5px] border-emerald-dark/20 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-emerald-dark text-6xl font-light">
+                            monetization_on
+                        </span>
+<div class="absolute -bottom-2 px-4 py-1 bg-emerald-dark rounded-full border border-primary/40">
+<span class="text-[10px] font-bold tracking-[0.3em] uppercase text-primary">Prestige</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Brand Name & Slogan -->
+<div class="text-center mt-4">
+<h1 class="text-gold text-6xl font-bold tracking-tighter mb-4">
+                    AURUM
+                </h1>
+<div class="flex items-center justify-center gap-3">
+<div class="h-[1px] w-8 bg-primary/40"></div>
+<p class="text-cream/90 text-sm md:text-base font-light tracking-widest uppercase">
+                        Votre épargne, votre communauté
+                    </p>
+<div class="h-[1px] w-8 bg-primary/40"></div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full max-w-sm flex flex-col gap-4 mb-12">
+<!-- Primary CTA -->
+<button class="gold-gradient hover:opacity-90 transition-all active:scale-[0.98] h-14 w-full rounded-full flex items-center justify-center shadow-lg group">
+<span class="text-emerald-dark font-bold text-lg tracking-wide uppercase">Créer un compte</span>
+<span class="material-symbols-outlined ml-2 text-emerald-dark group-hover:translate-x-1 transition-transform">
+                    chevron_right
+                </span>
+</button>
+<!-- Secondary CTA -->
+<button class="border-2 border-primary/60 hover:border-primary transition-all active:scale-[0.98] h-14 w-full rounded-full flex items-center justify-center bg-white/5 backdrop-blur-sm">
+<span class="text-primary font-bold text-lg tracking-wide uppercase">J'ai déjà un compte</span>
+</button>
+<!-- Language/Region Selector (Small detail) -->
+<div class="flex items-center justify-center gap-2 mt-2 opacity-60">
+<span class="material-symbols-outlined text-sm">public</span>
+<span class="text-[10px] uppercase tracking-widest">Français | Afrique de l'Ouest</span>
+</div>
+</div>
+<!-- Bottom Pattern Element -->
+<div class="absolute bottom-[-50px] left-0 right-0 h-32 opacity-10 bogolan-pattern pointer-events-none"></div>
+</div>
+<!-- Background Decoration Image (Hero style as requested in components) -->
+<div class="hidden">
+<img data-alt="Traditional luxury African mudcloth pattern with gold accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOOlph3G4_LfJTeIps0TyibvH-zaTthTsH_IZjE13-w0Ruasl0GZUYxHx3CFW_k0qktc9iIApAhDzTr2-hnqrdlJay8ce_PzhjBqfCyCWjRodWt_c-lSMRl2nwtfA7jc7gez45szfPAUawrsCOq9AEn09NhFdazr4DA9PMAJ-8XqNjqh_kn6DWVTQDFXMMzEHK_eoSuHfv9PjvwirUw0bC8yBABT8VutC7cpITvmwZYfhG6ZqTLgsRflGzo0zDVySPkoRbGuTUvZo"/>
+</div>
+<style>
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+        }
+    </style>
+</body></html>

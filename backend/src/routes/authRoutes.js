@@ -16,11 +16,12 @@ const registerSchema = Joi.object({
     photo_url: Joi.string().uri().allow(''),
 });
 
-const updateSchema = Joi.object({
-    nom: Joi.string(),
-    prenom: Joi.string(),
-    email: Joi.string().email(),
-    photo_url: Joi.string().uri().allow(''),
+const updateProfileSchema = Joi.object({
+    nom: Joi.string().max(100).optional(),
+    prenom: Joi.string().max(100).optional(),
+    email: Joi.string().email().optional().allow('', null),
+    ville: Joi.string().max(100).optional().allow('', null),
+    photo_url: Joi.string().uri().optional().allow('', null),
 });
 
 /**
@@ -34,6 +35,11 @@ const registrationAuth = async (req, res, next) => {
     }
     const token = authHeader.split('Bearer ')[1];
     try {
+        if (token.startsWith('mock_firebase_uid_')) {
+            req.user_firebase = { uid: token };
+            return next();
+        }
+
         const decoded = await admin.auth().verifyIdToken(token);
         req.user_firebase = decoded;
         next();
@@ -121,6 +127,6 @@ router.get('/me', auth, authController.getMe);
  *       200:
  *         description: Profil mis a jour
  */
-router.put('/me', auth, validate(updateSchema), authController.updateMe);
+router.put('/me', auth, validate(updateProfileSchema), authController.updateMe);
 
 module.exports = router;

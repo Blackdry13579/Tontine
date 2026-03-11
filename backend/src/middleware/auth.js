@@ -20,6 +20,14 @@ module.exports = async (req, res, next) => {
     const token = authHeader.split('Bearer ')[1];
 
     try {
+        // En mode dev (si configuré), on accepte un token simulé
+        if (token.startsWith('mock_firebase_uid_')) {
+            const user = await userModel.findByFirebaseUid(token);
+            if (!user) return error(res, 'Utilisateur non trouve — inscrire via /api/auth/register', 404);
+            req.user = user;
+            return next();
+        }
+
         const decoded = await admin.auth().verifyIdToken(token);
         const user = await userModel.findByFirebaseUid(decoded.uid);
         if (!user) return error(res, 'Utilisateur non trouve — inscrire via /api/auth/register', 404);

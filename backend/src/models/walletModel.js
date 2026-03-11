@@ -10,42 +10,70 @@ TODO V2 : Intégrer l'API LigdiCash pour automatiser les paiements.
 const pool = require('../config/database');
 
 async function getHistoriqueMembre(userId) {
-    // Retourne l'historique des cotisations avec le total calculé
-    const query = `
-    SELECT
-      c.id,
-      c.montant,
-      c.statut,
-      c.nom_expediteur,
-      c.prenom_expediteur,
-      c.telephone_expediteur,
-      c.date_creation,
-      c.date_paiement,
-      t.nom as tontine_nom,
-      cy.numero_cycle
-    FROM cotisations c
-    JOIN memberships m ON c.membership_id = m.id
-    JOIN tontines t ON m.tontine_id = t.id
-    JOIN cycles cy ON c.cycle_id = cy.id
-    WHERE m.user_id = $1
-    ORDER BY c.date_creation DESC
+  const query = `
+    SELECT * FROM (
+      SELECT
+        c.id,
+        c.montant,
+        c.statut,
+        c.date_creation,
+        'cotisation' as type,
+        t.nom as tontine_nom,
+        cy.numero_cycle
+      FROM cotisations c
+      JOIN memberships m ON c.membership_id = m.id
+      JOIN tontines t ON m.tontine_id = t.id
+      JOIN cycles cy ON c.cycle_id = cy.id
+      WHERE m.user_id = $1
+
+      UNION ALL
+
+      SELECT
+        d.id,
+        d.montant,
+        d.statut,
+        d.date_creation,
+        'distribution' as type,
+        t.nom as tontine_nom,
+        cy.numero_cycle
+      FROM distributions d
+      JOIN memberships m ON d.membership_id = m.id
+      JOIN tontines t ON m.tontine_id = t.id
+      JOIN cycles cy ON d.cycle_id = cy.id
+      WHERE m.user_id = $1
+    ) AS h
+    ORDER BY h.date_creation DESC
   `;
-    return pool.query(query, [userId]);
+  return pool.query(query, [userId]);
 }
 
 async function getResumeFinancierMembre(userId) {
-    // Calcule le résumé financier affiché dans le dashboard membre
-    const query = `
-    SELECT
-      COALESCE(SUM(CASE WHEN statut = 'validee' THEN montant ELSE 0 END), 0) as total_valide,
-      COALESCE(SUM(CASE WHEN statut = 'en_attente_validation' THEN montant ELSE 0 END), 0) as total_en_attente,
-      COUNT(CASE WHEN statut = 'validee' THEN 1 END) as nombre_paiements,
-      COUNT(CASE WHEN statut = 'en_retard' THEN 1 END) as nombre_retards
-    FROM cotisations c
-    JOIN memberships m ON c.membership_id = m.id
-    WHERE m.user_id = $1
+  const query = `
+    WITH stats AS (
+      SELECT 
+        COALESCE(SUM(CASE WHEN c.statut = 'validee' THEN c.montant ELSE 0 END), 0) as total_cotisations_valide,
+        COALESCE(SUM(CASE WHEN c.statut = 'en_attente_validation' THEN c.montant ELSE 0 END), 0) as total_cotisations_en_attente,
+        COUNT(CASE WHEN c.statut = 'validee' THEN 1 END) as nb_cotisations,
+        COUNT(CASE WHEN c.statut = 'en_retard' THEN 1 END) as nb_retards
+      FROM cotisations c
+      JOIN memberships m ON c.membership_id = m.id
+      WHERE m.user_id = $1
+    ),
+    gains AS (
+      SELECT 
+        COALESCE(SUM(CASE WHEN d.statut = 'effectuee' THEN d.montant ELSE 0 END), 0) as total_gains
+      FROM distributions d
+      JOIN memberships m ON d.membership_id = m.id
+      WHERE m.user_id = $1
+    )
+    SELECT 
+      (total_cotisations_valide + total_gains) as total_valide,
+      total_cotisations_en_attente as total_en_attente,
+      nb_cotisations as nombre_paiements,
+      nb_retards as nombre_retards
+    FROM stats, gains
   `;
-    return pool.query(query, [userId]);
+  return pool.query(query, [userId]);
 }
 
 module.exports = { getHistoriqueMembre, getResumeFinancierMembre };

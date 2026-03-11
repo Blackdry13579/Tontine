@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding - Sécurité</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "emerald-dark": "#0B3D2E",
+                        "cream-light": "#F5F0E1",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#201d12",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.bogolan-pattern {
+    background-color: #0B3D2E;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAKHhri0qS6dF1OdJO1JqdV1iGrCS08DrImxqerAaeQwYvob_sUqoUV4_HHdfoPYOQNHv4Qs3mhk0uDSTl-ok3fPyn0AZQfJ0yyojZiWm8WNCsPypGygMG3sG-hV0tHRIKV4gJ7hxzJo_G8O-AOZ_v3bH9KQcPdZ56VTXSUhTlOUDQ9itoUOYxSWKLHSx35JN_nIFIYaTP1Ql8tvwhhbwkEs9alv8QyU-CLy-4VyrxbCAQMtHr-FQy-0D1hxcFe4jUS2tyax2GfQBU);
+    /* Using a geometric texture to simulate the bogolan inspiration subtly */
+    background-blend-mode: overlay;
+    opacity: 0.95
+    }
+.shield-gradient {
+    background: radial-gradient(circle at 30% 30%, #f1d374 0%, #c9a326 100%)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased">
+<!-- Main Container: Mobile App Frame (Simulation) -->
+<div class="relative flex h-screen w-full max-w-md mx-auto flex-col bogolan-pattern overflow-hidden shadow-2xl">
+<!-- Top Navigation Bar -->
+<div class="flex items-center p-6 justify-between z-10">
+<div class="text-primary flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined text-4xl">shield_lock</span>
+</div>
+<h2 class="text-cream-light/60 text-sm font-bold leading-tight tracking-[0.1em] uppercase flex-1 text-center">SÉCURITÉ</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="text-cream-light/80 text-sm font-medium hover:text-primary transition-colors">Passer</button>
+</div>
+</div>
+<!-- Illustration Area -->
+<div class="flex-1 flex flex-col items-center justify-center px-8 text-center space-y-12">
+<!-- African Shield Illustration (Custom Component) -->
+<div class="relative w-64 h-80 flex items-center justify-center">
+<!-- Decorative Glow -->
+<div class="absolute inset-0 bg-primary/20 blur-[80px] rounded-full"></div>
+<!-- Stylized Shield -->
+<div class="relative z-10 w-48 h-64 shield-gradient rounded-full border-4 border-primary/50 shadow-2xl flex flex-col items-center justify-center overflow-hidden">
+<!-- Bogolan Accents on Shield -->
+<div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+<div class="grid grid-cols-4 gap-2 p-4">
+<div class="h-4 w-4 border-2 border-emerald-dark rotate-45"></div>
+<div class="h-4 w-4 border-2 border-emerald-dark rotate-45"></div>
+<div class="h-4 w-4 border-2 border-emerald-dark rotate-45"></div>
+<div class="h-4 w-4 border-2 border-emerald-dark rotate-45"></div>
+</div>
+</div>
+<span class="material-symbols-outlined text-emerald-dark text-8xl font-light">verified_user</span>
+<!-- Shield Texture Detail -->
+<div class="mt-4 flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-dark/40"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-dark/40"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-dark/40"></div>
+</div>
+</div>
+<!-- Abstract Geometric Floating Elements -->
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-primary/30 rounded-lg rotate-12 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">lock</span>
+</div>
+<div class="absolute bottom-10 -left-6 w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center border border-primary/40">
+<span class="material-symbols-outlined text-primary text-lg">key</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-4">
+<h1 class="text-cream-light tracking-tight text-4xl font-bold leading-tight">
+                    Votre argent en <span class="text-primary">sécurité</span>
+</h1>
+<p class="text-cream-light/80 text-lg font-normal leading-relaxed max-w-xs mx-auto">
+                    Finis les carnets papier. Toutes vos cotisations sont tracées et sécurisées.
+                </p>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-8 space-y-8 z-10">
+<!-- Pagination Dots -->
+<div class="flex w-full flex-row items-center justify-center gap-3">
+<div class="h-2 w-8 rounded-full bg-primary shadow-[0_0_10px_rgba(201,163,38,0.5)]"></div>
+<div class="h-2 w-2 rounded-full bg-cream-light/20"></div>
+<div class="h-2 w-2 rounded-full bg-cream-light/20"></div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-primary/90 text-emerald-dark py-5 rounded-full font-bold text-lg shadow-xl transition-all transform active:scale-95 flex items-center justify-center gap-2 group">
+                Suivant
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Background Decorative Elements -->
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+</body></html>

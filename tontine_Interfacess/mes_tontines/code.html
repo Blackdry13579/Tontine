@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mes Tontines - Luxe Africain</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#c9a326",
+              "background-light": "#F5F0E1",
+              "background-dark": "#201d12",
+              "accent-green": "#2D6A4F",
+              "neutral-warm": "#867e65",
+              "dark-ebony": "#171612"
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-dark-ebony dark:text-background-light">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center justify-between px-4 py-4 max-w-2xl mx-auto">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-dark-ebony dark:text-background-light">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-dark-ebony dark:text-background-light">Mes Tontines</h1>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-dark-ebony dark:text-background-light">search</span>
+</button>
+</div>
+</header>
+<!-- Filter Segmented Control -->
+<nav class="px-4 py-4 max-w-2xl mx-auto">
+<div class="flex h-12 items-center justify-between rounded-full bg-primary/5 dark:bg-white/5 p-1 border border-primary/10">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-4 transition-all has-[:checked]:bg-primary has-[:checked]:text-white text-neutral-warm dark:text-background-light/60 font-medium text-sm">
+<span>Toutes</span>
+<input class="hidden" name="filter-tontines" type="radio" value="all"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-4 transition-all has-[:checked]:bg-primary has-[:checked]:text-white text-neutral-warm dark:text-background-light/60 font-medium text-sm">
+<span class="truncate">Actives</span>
+<input checked="" class="hidden" name="filter-tontines" type="radio" value="active"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-full px-4 transition-all has-[:checked]:bg-primary has-[:checked]:text-white text-neutral-warm dark:text-background-light/60 font-medium text-sm">
+<span class="truncate">Terminées</span>
+<input class="hidden" name="filter-tontines" type="radio" value="completed"/>
+</label>
+</div>
+</nav>
+<!-- Tontine List -->
+<main class="px-4 pb-24 max-w-2xl mx-auto space-y-4">
+<!-- Active Tontine Card 1 -->
+<div class="relative bg-white dark:bg-dark-ebony rounded-xl shadow-sm border border-primary/5 overflow-hidden flex transition-transform hover:scale-[1.01]">
+<!-- Status Stripe -->
+<div class="w-2 bg-accent-green"></div>
+<div class="flex-1 p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-accent-green bg-accent-green/10 px-2 py-0.5 rounded-full">Active</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">Membre</span>
+</div>
+<h3 class="text-lg font-bold text-dark-ebony dark:text-background-light leading-tight">Cercle Famille Kouassi</h3>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-neutral-warm dark:text-background-light/60">Mensualité</p>
+<p class="text-sm font-bold text-primary">50,000 FCFA</p>
+</div>
+</div>
+<!-- Progress Section -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-dark-ebony dark:text-background-light">Progression cycle</span>
+<span class="text-primary">75% • 9/12 mois</span>
+</div>
+<div class="h-1.5 w-full bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 75%"></div>
+</div>
+<div class="flex items-center gap-1.5 pt-1">
+<span class="material-symbols-outlined text-sm text-primary">event_upcoming</span>
+<p class="text-xs text-neutral-warm dark:text-background-light/70 italic">Votre tour dans 2 mois</p>
+</div>
+</div>
+<div class="flex justify-end pt-2">
+<button class="text-xs font-bold text-dark-ebony dark:text-background-light border-b-2 border-primary pb-0.5 hover:text-primary transition-colors">VOIR DÉTAILS</button>
+</div>
+</div>
+</div>
+<!-- Active Tontine Card 2 -->
+<div class="relative bg-white dark:bg-dark-ebony rounded-xl shadow-sm border border-primary/5 overflow-hidden flex transition-transform hover:scale-[1.01]">
+<!-- Status Stripe -->
+<div class="w-2 bg-accent-green"></div>
+<div class="flex-1 p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-accent-green bg-accent-green/10 px-2 py-0.5 rounded-full">Active</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-dark-ebony bg-primary/20 dark:text-primary px-2 py-0.5 rounded-full">Admin</span>
+</div>
+<h3 class="text-lg font-bold text-dark-ebony dark:text-background-light leading-tight">Business Founders CI</h3>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-neutral-warm dark:text-background-light/60">Mensualité</p>
+<p class="text-sm font-bold text-primary">250,000 FCFA</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span class="text-dark-ebony dark:text-background-light">Progression cycle</span>
+<span class="text-primary">25% • 2/8 mois</span>
+</div>
+<div class="h-1.5 w-full bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 25%"></div>
+</div>
+<div class="flex items-center gap-1.5 pt-1">
+<span class="material-symbols-outlined text-sm text-primary">check_circle</span>
+<p class="text-xs text-neutral-warm dark:text-background-light/70 italic">Déjà reçu ce cycle</p>
+</div>
+</div>
+<div class="flex justify-end pt-2">
+<button class="text-xs font-bold text-dark-ebony dark:text-background-light border-b-2 border-primary pb-0.5 hover:text-primary transition-colors">GÉRER LE GROUPE</button>
+</div>
+</div>
+</div>
+<!-- Terminated Tontine Card (Example) -->
+<div class="relative bg-white/60 dark:bg-dark-ebony/60 rounded-xl shadow-sm border border-primary/5 overflow-hidden flex opacity-80">
+<!-- Status Stripe -->
+<div class="w-2 bg-neutral-warm"></div>
+<div class="flex-1 p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-neutral-warm bg-neutral-warm/10 px-2 py-0.5 rounded-full">Terminée</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded-full">Membre</span>
+</div>
+<h3 class="text-lg font-bold text-dark-ebony dark:text-background-light leading-tight">Amis du Collège 2023</h3>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-neutral-warm dark:text-background-light/60">Total épargné</p>
+<p class="text-sm font-bold text-neutral-warm">1,200,000 FCFA</p>
+</div>
+</div>
+<div class="flex justify-end pt-2">
+<button class="text-xs font-bold text-neutral-warm border-b-2 border-neutral-warm/30 pb-0.5">ARCHIVES</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 size-14 bg-primary text-white rounded-full shadow-lg shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-dark-ebony border-t border-primary/10 px-4 py-2 z-50">
+<div class="max-w-2xl mx-auto flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-neutral-warm dark:text-background-light/40 py-1 px-3" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold tracking-wider uppercase">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary py-1 px-3 bg-primary/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-[10px] font-bold tracking-wider uppercase">Tontines</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-neutral-warm dark:text-background-light/40 py-1 px-3" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-bold tracking-wider uppercase">Portefeuille</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-neutral-warm dark:text-background-light/40 py-1 px-3" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold tracking-wider uppercase">Profil</span>
+</a>
+</div>
+</nav>
+</body></html>

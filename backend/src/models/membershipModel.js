@@ -54,6 +54,17 @@ const update = async (id, membershipData) => {
     return rows[0];
 };
 
+const findById = async (id) => {
+    const { rows } = await pool.query(
+        `SELECT m.*, u.nom, u.prenom, u.telephone
+     FROM memberships m
+     JOIN users u ON m.user_id = u.id
+     WHERE m.id = $1`,
+        [id]
+    );
+    return rows[0];
+};
+
 const deleteMembership = async (id) => {
     const { rowCount } = await pool.query('DELETE FROM memberships WHERE id = $1', [id]);
     return rowCount > 0;
@@ -63,6 +74,7 @@ module.exports = {
     create,
     findByTontineId,
     findByUserAndTontine,
+    findById,
     update,
     deleteMembership
 };

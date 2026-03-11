@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Centre d'aide - AURUM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C9A227",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#1A1A1A",
+                        "emerald-deep": "#0B3D2E",
+                        "black-deep": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-black-deep font-display text-black-deep dark:text-slate-100 min-h-screen">
+<div class="max-w-md mx-auto min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center px-4 py-6 justify-between relative">
+<button class="dark:text-slate-100 flex size-10 items-center justify-center hover:bg-primary/10 rounded-full transition-colors text-black-deep absolute left-4">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold leading-tight tracking-tight flex-1 text-center text-black-deep">Centre d'aide</h1>
+</header>
+<!-- Search Bar -->
+<main class="flex-1 px-4 py-4">
+<!-- Category Block -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden border border-slate-200 dark:border-slate-700">
+<!-- FAQ -->
+<a class="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors border-b border-slate-100 dark:border-slate-700" href="#">
+<div class="flex items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined text-2xl">quiz</span>
+</div>
+<div class="flex-1">
+<p class="font-medium dark:text-slate-100 text-black-deep">Foire aux questions (FAQ)</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Trouvez des réponses immédiates</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</a>
+<!-- Support -->
+<a class="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors border-b border-slate-100 dark:border-slate-700" href="#">
+<div class="flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 shrink-0 size-12">
+<span class="material-symbols-outlined text-2xl">support_agent</span>
+</div>
+<div class="flex-1">
+<p class="font-medium dark:text-slate-100 text-black-deep">Contacter le support</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Discutez avec notre équipe</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</a>
+<!-- User Guide -->
+<a class="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors border-b border-slate-100 dark:border-slate-700" href="#">
+<div class="flex items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 shrink-0 size-12">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+</div>
+<div class="flex-1">
+<p class="font-medium dark:text-slate-100 text-black-deep">Guide d'utilisation</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Apprenez à maîtriser AURUM</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</a>
+<!-- Report Issue -->
+</div>
+<!-- Promotion / Tip Card -->
+<div class="mt-8 relative overflow-hidden rounded-2xl p-6 text-white shadow-lg bg-emerald-deep">
+<div class="relative z-10">
+<h3 class="text-lg font-bold mb-1">Besoin d'un appel ?</h3>
+<p class="text-white/80 text-sm mb-4">Nos experts sont disponibles de 9h à 18h pour vous accompagner.</p>
+<button class="bg-white px-4 py-2 rounded-lg font-bold text-sm shadow-sm hover:bg-slate-50 transition-colors text-emerald-deep">
+                        Prendre rendez-vous
+                    </button>
+</div>
+<!-- Abstract pattern replacement for image -->
+<div class="absolute right-[-20px] bottom-[-20px] opacity-20">
+<span class="material-symbols-outlined text-[120px]">headset_mic</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 w-full border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pb-6 pt-2 flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Portefeuille</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-medium">Marché</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">help</span>
+<span class="text-[10px] font-medium">Aide</span>
+</a>
+</nav>
+</div>
+</body></html>

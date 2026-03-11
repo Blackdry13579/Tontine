@@ -3,6 +3,9 @@ const cycleModel = require('../models/cycleModel');
 const apiResponse = require('../utils/apiResponse');
 const pool = require('../config/database');
 
+const notificationModel = require('../models/notificationModel');
+const membershipModel = require('../models/membershipModel');
+
 const triggerDistribution = async (req, res, next) => {
     const client = await pool.connect();
     try {
@@ -10,9 +13,7 @@ const triggerDistribution = async (req, res, next) => {
 
         const { cycle_id, membership_id, montant, moyen_distribution, reference_transaction } = req.body;
 
-        // Check if cycle is closed or ready for distribution?
-        // Logic here...
-
+        // Create Distribution
         const distribution = await distributionModel.create({
             cycle_id,
             membership_id,
@@ -23,8 +24,27 @@ const triggerDistribution = async (req, res, next) => {
             statut: 'effectuee'
         });
 
+        // Update Cycle Status
+        await cycleModel.update(cycle_id, { statut: 'termine' });
+
+        // Get membership to notify user
+        const membership = await membershipModel.findById(membership_id);
+        if (membership) {
+            await notificationModel.create({
+                user_id: membership.user_id,
+                type: 'gain_tontine',
+                titre: 'Félicitations !',
+                message: `Vous avez reçu un versement de ${montant} FCFA pour votre tontine.`,
+                data: {
+                    cycle_id,
+                    distribution_id: distribution.id,
+                    montant
+                }
+            });
+        }
+
         await client.query('COMMIT');
-        return apiResponse.success(res, distribution, 'Distribution effectuee avec succes', 201);
+        return apiResponse.success(res, distribution, 'Distribution effectuée avec succès', 201);
     } catch (err) {
         await client.query('ROLLBACK');
         next(err);

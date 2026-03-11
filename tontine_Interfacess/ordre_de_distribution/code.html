@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "card-light": "#ffffff",
+                        "accent-gold": "#c9a326",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Ordre des Bénéficiaires</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#171612] dark:text-white min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-6 flex items-center justify-between">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Ordre des bénéficiaires</h1>
+<div class="size-10"></div> <!-- Spacer for centering -->
+</header>
+<main class="flex-1 px-4 pb-32">
+<!-- Toggle Switch -->
+<div class="mt-2 mb-8">
+<div class="flex h-12 w-full items-center justify-center rounded-full bg-black/5 dark:bg-white/5 p-1">
+<button class="flex h-full flex-1 items-center justify-center rounded-full bg-white dark:bg-primary shadow-sm text-sm font-bold transition-all">
+                    Manuel
+                </button>
+<button class="flex h-full flex-1 items-center justify-center rounded-full text-sm font-medium text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-all">
+                    Automatique
+                </button>
+</div>
+</div>
+<!-- Instructional Text -->
+<div class="text-center mb-6">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<p class="text-xs font-medium text-primary">Position 1 = Premier à recevoir</p>
+</div>
+</div>
+<!-- Member List -->
+<div class="space-y-3">
+<!-- Member 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-black/5 dark:border-white/5 group">
+<div class="flex items-center justify-center size-8 rounded-full bg-primary text-white font-bold text-sm shrink-0">
+                    1
+                </div>
+<div class="size-12 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img alt="Portrait d'un membre" class="w-full h-full object-cover" data-alt="Portrait of a smiling male member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD66LFk1wesoiPk5a-ev4iwGUzO4p0mJz6ePd2i721MldhbE-hQ5ET6JPWaHAzwl9ojiKkTkpX7hw-zxTU5g7GZyUGfp-MMXm7yPrp9uD7TP72FkLFHKEdyIvngiKLIfExAQucAyUPsmgN-GPocGBsSuAJdTSRnsvkQNqHSkwerxPGedAhypzIopo6M7lTkDpF-F7uK_-Y_vPx1yuxxBzhaxiVMdcpRRinFZZrpQTGKbStRyZPKK430mgmGQ-8SDm3aF3Ddx4xqxlQ"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Jean-Marc Toti</p>
+<p class="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40 font-semibold">Membre actif</p>
+</div>
+<button class="text-black/30 dark:text-white/30 cursor-grab active:cursor-grabbing hover:text-primary transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 font-bold text-sm shrink-0">
+                    2
+                </div>
+<div class="size-12 rounded-full overflow-hidden border-2 border-black/5 shrink-0">
+<img alt="Portrait d'une membre" class="w-full h-full object-cover" data-alt="Portrait of a professional female member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrRBJ0lw1RJT1KaJBBm74u2oGLHV0jVqzAgLPTJQANnAM8uPbBhYiqJo-sw4wW8fhK989rzAohYlWvbo194wv-dc0bIJ_zedi3gb36Z2onQH5QKnBnNP7KMPJyT3e8ebZ6y0w2j3an1e-dw7nNpDpvM_8QL8BwEmooB55zQA9feZqQLs6iPzDgqFDnYc34dnn5F9HC5JH51txTKw5sL1pW__J5H1XPilQB0TfcCGq5WAKHP9rRLePGQchKZrKXOSRO0JVEwpl4WIk"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Marie-Claire N'Goran</p>
+<p class="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40 font-semibold">Trésorière</p>
+</div>
+<button class="text-black/30 dark:text-white/30 cursor-grab active:cursor-grabbing hover:text-primary transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 font-bold text-sm shrink-0">
+                    3
+                </div>
+<div class="size-12 rounded-full overflow-hidden border-2 border-black/5 shrink-0">
+<img alt="Portrait d'un membre" class="w-full h-full object-cover" data-alt="Portrait of a young male member in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiAX7ryH7zjHxEazsLhk0cTOplpCM68fXqw5QX5IdIK4RJ3MOb9k2qCn-LHG2d6D_fgp4yY8FuEgg08DGBaQY-ZH6uTJlo_-YTv3Wg4xUuXLEh5ytQBCKPM5eiXYrikwFmkwuywrDePakNkKixMu-1ISPCy57GSRD6KaOehbXXVzHz-S7VSRs7VYoBkP_XeRFneKNx9DwNt5surp_dCkSmYLjijV_zgZFed13rQ7cnLt38Ij9Uv1maKYQ9nW2jwDPWoXyqnxyTJhc"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">David Kouassi</p>
+<p class="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40 font-semibold">Membre</p>
+</div>
+<button class="text-black/30 dark:text-white/30 cursor-grab active:cursor-grabbing hover:text-primary transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+<!-- Member 4 -->
+<div class="flex items-center gap-4 bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 font-bold text-sm shrink-0">
+                    4
+                </div>
+<div class="size-12 rounded-full overflow-hidden border-2 border-black/5 shrink-0">
+<img alt="Portrait d'une membre" class="w-full h-full object-cover" data-alt="Portrait of a focused female member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6_tmpsLq9_5JadnbJlj4q7O-lwPmdjwJgYeIwOgUSRxI-lZSYcp8lTUpzGFeiW63vHUYjslDZawTKUj-1XVb8Bhed64mrygNInhMNw6Sd0HdhM23bhCWosejicuOROdx2F5vU0g2qZeP-kA90wxk-0w-DHAqUiDu8U-94r39vPmvbuN6c4zFub-WaaDw7QLMi4xIiSlsGsrYtcMnwPEY19Dt_rNef5oGPrJToR3C5oiPz07BNWBQttYgu4FXnZ4wmcgcCpz273AI"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Sarah Diallo</p>
+<p class="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40 font-semibold">Membre</p>
+</div>
+<button class="text-black/30 dark:text-white/30 cursor-grab active:cursor-grabbing hover:text-primary transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+<!-- Member 5 -->
+<div class="flex items-center gap-4 bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-black/5 dark:border-white/5">
+<div class="flex items-center justify-center size-8 rounded-full bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 font-bold text-sm shrink-0">
+                    5
+                </div>
+<div class="size-12 rounded-full overflow-hidden border-2 border-black/5 shrink-0">
+<img alt="Portrait d'un membre" class="w-full h-full object-cover" data-alt="Portrait of a senior male professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMl0BE_zDqK7PxyGFAzLR6gFTBZYML6BKLX_4kZZfB5wPC5wD1ITuSJ1v0Thf2lNH79jjsfA0nLKhfTHXQU4WZZ0OZjPdaIlL8WZYpNILyEF-858p39-7wdZaNC96uSJ5NxnZrOYzqaAOJFpCCpUF8GBOiXgDrPK0Drbhs2OwOGBo3s0Ex-4P9wHMK4ISRIQTAGF1v2ZLMF0qcTQDG6NMVo1ju4aiuS3IjDLoaEo27WNw3ui6rzr82CbciCJcQ6GBYJ3Cr4EaAjo4"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Mamadou Sylla</p>
+<p class="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40 font-semibold">Président</p>
+</div>
+<button class="text-black/30 dark:text-white/30 cursor-grab active:cursor-grabbing hover:text-primary transition-colors">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light/95 dark:via-background-dark/95 to-transparent">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">save</span>
+            Enregistrer l'ordre
+        </button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 hidden">
+<!-- Re-using BottomNavBar style from component list if needed for global navigation context -->
+<div class="flex gap-2 border-t border-black/5 bg-white px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium">Accueil</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
+<p class="text-xs font-medium">Tontines</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium">Membres</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#867e65]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-xs font-medium">Profil</p>
+</a>
+</div>
+</nav>
+</body></html>

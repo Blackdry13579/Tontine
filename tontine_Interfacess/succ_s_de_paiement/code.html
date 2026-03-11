@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c9a326",
+                        "background-light": "#F5F0E1",
+                        "background-dark": "#201d12",
+                        "accent-gold": "#c9a326",
+                        "luxury-brown": "#3d3211",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #F5F0E1;
+        }
+        .luxury-pattern {
+            background-image: radial-gradient(#c9a326 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-luxury-brown dark:text-background-light min-h-screen flex flex-col">
+<!-- Decorative Background Pattern -->
+<div class="fixed inset-0 luxury-pattern pointer-events-none"></div>
+<!-- Main Content Wrapper -->
+<main class="relative flex-1 flex flex-col items-center justify-center px-6 py-12 w-full max-w-md mx-auto">
+<!-- Top Close/Back Action (Optional but helps UX) -->
+<div class="absolute top-6 right-6">
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-luxury-brown dark:text-primary">close</span>
+</button>
+</div>
+<!-- Success Animation Placeholder / Icon Section -->
+<div class="mb-10 relative">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-3xl scale-150"></div>
+<div class="relative flex items-center justify-center w-32 h-32 bg-primary rounded-full shadow-2xl shadow-primary/40 border-4 border-white dark:border-background-dark">
+<span class="material-symbols-outlined text-white text-6xl font-bold">check</span>
+</div>
+</div>
+<!-- Success Message -->
+<div class="text-center mb-10 space-y-2">
+<h1 class="text-3xl font-bold tracking-tight text-luxury-brown dark:text-primary uppercase">Paiement confirmé !</h1>
+<p class="text-luxury-brown/70 dark:text-background-light/70 font-medium">Votre transaction a été traitée avec succès.</p>
+</div>
+<!-- Transaction Details Card -->
+<div class="w-full bg-white/60 dark:bg-background-dark/40 backdrop-blur-md rounded-xl p-8 border border-white/50 dark:border-primary/20 shadow-xl mb-12">
+<div class="flex flex-col items-center mb-8">
+<span class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Montant total</span>
+<span class="text-4xl font-bold text-luxury-brown dark:text-white">50.000 FCFA</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-3 border-b border-luxury-brown/10 dark:border-primary/10">
+<span class="text-sm text-luxury-brown/60 dark:text-background-light/50">Date</span>
+<span class="text-sm font-semibold">14 Octobre 2023, 14:30</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-luxury-brown/10 dark:border-primary/10">
+<span class="text-sm text-luxury-brown/60 dark:text-background-light/50">Tontine</span>
+<span class="text-sm font-semibold">Tontine Horizon</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-luxury-brown/10 dark:border-primary/10">
+<span class="text-sm text-luxury-brown/60 dark:text-background-light/50">ID Transaction</span>
+<span class="text-sm font-mono text-primary">#TXN-8829-AFR</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<span class="text-sm text-luxury-brown/60 dark:text-background-light/50">Statut</span>
+<span class="flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        Complété
+                    </span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full space-y-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center gap-3 transition-all active:scale-95">
+<span class="material-symbols-outlined">download</span>
+<span>Télécharger reçu</span>
+</button>
+<button class="w-full bg-transparent border-2 border-primary/30 hover:border-primary text-luxury-brown dark:text-primary font-bold py-5 rounded-full flex items-center justify-center gap-3 transition-all active:scale-95">
+<span class="material-symbols-outlined">home</span>
+<span>Retour à l'accueil</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Modified for Success State) -->
+<div class="mt-auto w-full bg-white dark:bg-background-dark/80 backdrop-blur-xl border-t border-luxury-brown/5 dark:border-primary/10">
+<div class="max-w-md mx-auto flex justify-around items-center px-4 py-3">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="house">house</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Accueil</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-luxury-brown/40 dark:text-background-light/40" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Tontines</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-luxury-brown/40 dark:text-background-light/40" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Scanner</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-luxury-brown/40 dark:text-background-light/40" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Chat</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-luxury-brown/40 dark:text-background-light/40" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Profil</span>
+</a>
+</div>
+</div>
+</body></html>
