@@ -1,43 +1,46 @@
-# 🌕 AURUM — Gestion de Tontines Numériques
+# 🌕 AURUM — Gestion de Tontines Numériques Premium
 
 ![Banner](https://img.shields.io/badge/AURUM-Tontine_Management-gold?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Stack-Node.js_|_PostgreSQL_|_Flutter-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-MVP_Ready-green?style=for-the-badge)
 
-AURUM est une plateforme moderne de gestion de tontines numériques (épargne collective rotative). Elle facilite la création, le suivi des cotisations et la distribution équitable des fonds, le tout sécurisé par une authentification forte et une architecture robuste.
+AURUM est une plateforme haut de gamme de gestion de tontines numériques (épargne collective rotative). Elle allie une esthétique "Aurum Luxe" (Émeraude & Or) à une robustesse technique pour une gestion sécurisée et fluide des cycles de tontine.
 
 ---
 
-## 🚀 Fonctionnalités Clés
+## 💎 Design & Esthétique
+Le projet arbore une identité visuelle forte appelée **Aurum Aurum (Prestige)** :
+- **Palette de couleurs** : Vert Émeraude Profond (`#1B5E20`), Or Royal (`#C9A326`) et Crème Soyeux (`#F5F0E1`).
+- **UI Premium** : Interfaces inspirées du luxe, avec des ombres douces, des arrondis généreux et des micro-animations.
+- **Accessibilité** : Police *Space Grotesk* pour une lisibilité moderne et élégante.
 
-### 👥 Utilisateurs & Profils
-- **Authentification Sécurisée** : Intégration Firebase Auth (OTP/Google).
-- **Profils Complets** : Gestion des informations personnelles et rôles système.
-- **Sécurité Locale** : Support du code PIN et de la biométrie (côté mobile).
+---
+
+## 🚀 Fonctionnalités Clés (MVP)
+
+### 👥 Utilisateurs & Profils (Refonte Fidèle)
+- **Authentification Sécurisée** : Connexion par numéro de téléphone avec validation OTP (simulée pour le MVP).
+- **Profil Utilisateur** : Modification complète du profil (nom, prénom, adresse) via l'API `updateProfile`.
+- **Centre de Sécurité** : Gestion visuelle du code PIN et de la biométrie (V2 pour la logique backend).
+- **Centre d'Aide** : Accès aux guides, FAQ et support direct depuis l'application.
 
 ### 💰 Gestion des Tontines
-- **Création Intuitive** : Paramétrage du montant, de la fréquence et du nombre de membres.
-- **Invitations** : Rejoindre facilement un groupe via un code unique.
-- **Tirage au Sort** : Algorithme automatique pour définir l'ordre de gain des membres.
+- **Création & Paramétrage** : Définition du cycle (hebdomadaire/mensuel), montant et membres.
+- **Flux de Paiement Validé** : Soumission des preuves de cotisation et validation par l'organisateur.
+- **Tirage au Sort** : Attribution automatique des rangs de gain.
 
-### 💸 Flux Financier (MVP)
-- **Validation Manuelle** : Soumission de preuves de paiement simplifiée.
-- **Dashboard Organisateur** : Vue d'ensemble des fonds collectés et validations en attente.
-- **Historique Visuel** : Suivi précis de chaque cotisation et distribution.
-
-### 🔔 Notifications & Rappels
-- Alertes automatiques avant chaque échéance de cotisation.
-- Notifications de validation et de gain.
+### 💸 Dashboard & Wallet
+- **Portefeuille Numérique** : Suivi du solde et historique des transactions.
+- **Suivi Admin** : Tableau de bord pour les organisateurs (suivi des membres en retard, validations en attente).
 
 ---
 
 ## 🛠️ Stack Technique
 
 - **Backend** : [Node.js](https://nodejs.org/) + [Express.js](https://expressjs.com/)
-- **Base de Données** : [PostgreSQL](https://www.postgresql.org/) (SQL pur, sans ORM pour une performance maximale)
-- **Mobile** : [Flutter](https://flutter.dev/) (Android/iOS)
-- **Authentification** : [Firebase SDK Admin](https://firebase.google.com/docs/admin)
-- **Documentation API** : [Swagger / OpenAPI 3.0](https://swagger.io/)
-- **Logs** : [Winston](https://github.com/winstonjs/winston)
+- **Base de Données** : [PostgreSQL](https://www.postgresql.org/) (Pur SQL, performance optimisée)
+- **Mobile** : [Flutter](https://flutter.dev/) (Material 3 avec thémisation personnalisée)
+- **État & Provider** : Gestion du state via `Provider` pour une réactivité optimale.
 
 ---
 
@@ -46,37 +49,32 @@ AURUM est une plateforme moderne de gestion de tontines numériques (épargne co
 ```text
 aurum/
 ├── backend/            # API REST (Node.js/Express)
-│   ├── src/            # Code source (Controllers, Models, Middlewares)
-│   ├── migrations/     # Scripts SQL versionnés
-│   └── server.js       # Point d'entrée
-├── mobile/             # Application Mobile (Flutter)
-└── docs/               # Documentation complémentaire
+│   ├── src/            # Controllers, Models, Routes
+│   └── migrations/     # Evolution SQL schémas
+├── mobile/             # Application Flutter
+│   └── lib/            # Code source (Features, Theme, Providers)
+└── pages_a_completer/  # Maquettes HTML & Ressources UI
 ```
 
 ---
 
-## ⚙️ Installation & Lancement
+## ⚙️ Installation
 
-### 1️⃣ Prérequis
-- Node.js (v16+)
-- PostgreSQL (v14+)
-- Flutter SDK
-
-### 2️⃣ Configuration Backend
+### Backend
 ```bash
-cd backend
-npm install
-# Créez votre fichier .env basé sur .env.example
-npm run migrate
+cd backend && npm install
+# Configurer .env
 npm run dev
 ```
 
-### 3️⃣ Accès Rapide
-- **API** : `http://localhost:3000/api`
-- **Documentation Swagger** : `http://localhost:3000/api-docs`
-- **Health Check** : `http://localhost:3000/health`
+### Mobile
+```bash
+cd mobile && flutter pub get
+flutter run -d chrome --web-port 8083 # Pour tester sur le port validé
+```
 
 ---
 
 ## 📄 Licence
-Ce projet est développé par Aurum Team. Tous droits réservés.
+Développé par **Aurum Team**.
+**MVP Validé ✅ - Prochaine étape : Backend Security V2 & Notifications Push.**
