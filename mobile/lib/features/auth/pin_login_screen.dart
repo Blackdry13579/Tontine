@@ -2,17 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../theme/app_theme.dart';
 import '../home/home_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+enum PinMode { login, setup, change }
 
 class PinLoginScreen extends StatefulWidget {
-  const PinLoginScreen({super.key});
+  final PinMode mode;
+  const PinLoginScreen({super.key, this.mode = PinMode.login});
 
   @override
   State<PinLoginScreen> createState() => _PinLoginScreenState();
 }
 
 class _PinLoginScreenState extends State<PinLoginScreen> {
+  final _storage = const FlutterSecureStorage();
   String _pin = '';
+  String _firstPin = ''; // Pour le mode setup/change (confirmation)
+  bool _isConfirming = false;
   final int _pinLength = 6;
+
+  String get _title {
+    if (widget.mode == PinMode.login) return 'Bienvenue';
+    if (widget.mode == PinMode.setup) return _isConfirming ? 'Confirmer' : 'Nouveau PIN';
+    return _isConfirming ? 'Confirmer' : 'Changer PIN';
+  }
+
+  String get _subtitle {
+    if (widget.mode == PinMode.login) return 'Saisissez votre code PIN';
+    return _isConfirming ? 'Saisissez de nouveau le code' : 'Définissez votre nouveau code';
+  }
 
   void _onNumberPressed(String number) {
     if (_pin.length < _pinLength) {
@@ -20,14 +38,59 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
         _pin += number;
       });
       if (_pin.length == _pinLength) {
-        // Simulation de validation
-        Future.delayed(const Duration(milliseconds: 300), () {
+        _handlePinComplete();
+      }
+    }
+  }
+
+  Future<void> _handlePinComplete() async {
+    if (widget.mode == PinMode.login) {
+      final savedPin = await _storage.read(key: 'user_pin');
+      if (_pin == (savedPin ?? '123456')) { // Fallback 123456 pour démo
+        if (mounted) {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
             (route) => false,
           );
+        }
+      } else {
+        setState(() => _pin = '');
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Code PIN incorrect'), backgroundColor: Colors.red),
+          );
+        }
+      }
+    } else {
+      // Setup or Change mode
+      if (!_isConfirming) {
+        setState(() {
+          _firstPin = _pin;
+          _pin = '';
+          _isConfirming = true;
         });
+      } else {
+        if (_pin == _firstPin) {
+          await _storage.write(key: 'user_pin', value: _pin);
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Code PIN enregistré avec succès'), backgroundColor: Color(0xFF1B5E20)),
+            );
+            Navigator.pop(context);
+          }
+        } else {
+          setState(() {
+            _pin = '';
+            _firstPin = '';
+            _isConfirming = false;
+          });
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Les codes ne correspondent pas'), backgroundColor: Colors.red),
+            );
+          }
+        }
       }
     }
   }
@@ -64,14 +127,14 @@ class _PinLoginScreenState extends State<PinLoginScreen> {
                     child: const Icon(Symbols.security, color: AppTheme.primaryGold, size: 48, fill: 1),
                   ),
                   const SizedBox(height: 24),
-                  const Text(
-                    'Bienvenue',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: AppTheme.textDark),
+                  Text(
+                    _title,
+                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: AppTheme.textDark),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Saisissez votre code PIN',
-                    style: TextStyle(fontSize: 16, color: AppTheme.grayText, fontWeight: FontWeight.w500),
+                  Text(
+                    _subtitle,
+                    style: const TextStyle(fontSize: 16, color: AppTheme.grayText, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

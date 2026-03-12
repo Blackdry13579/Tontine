@@ -201,7 +201,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _buildTransactionItem(TransactionModel tx) {
     final bool isDebit = tx.type == 'cotisation' || tx.type == 'versement' || tx.type == 'frais';
-    final Color statusColor = isDebit ? Colors.red : AppTheme.emeraldDark;
     final IconData icon = isDebit ? Symbols.check_circle : Symbols.south_west;
     final String sign = isDebit ? '-' : '+';
     final String statusLabel = isDebit ? 'PAYÉ' : 'REÇU';

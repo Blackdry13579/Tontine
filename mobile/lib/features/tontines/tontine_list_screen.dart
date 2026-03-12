@@ -9,7 +9,6 @@ import 'tontine_detail_screen.dart';
 import 'completed_tontine_detail_screen.dart';
 import 'create_tontine_screen.dart';
 import '../activities/admin_payment_tracking_screen.dart';
-import 'tontines_terminees_screen.dart';
 
 class TontineListScreen extends StatefulWidget {
   const TontineListScreen({super.key});
@@ -46,12 +45,6 @@ class _TontineListScreenState extends State<TontineListScreen> {
             style: TextStyle(color: AppTheme.textDark, fontWeight: FontWeight.bold),
           ),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.history_edu),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(
-                builder: (_) => const TontinesTermineesScreen()
-              )),
-            ),
             IconButton(
               icon: const Icon(Symbols.search, color: AppTheme.textDark),
               onPressed: () {},
@@ -342,7 +335,9 @@ class _TontineListScreenState extends State<TontineListScreen> {
                           onPressed: () {
                             if (role == 'Admin') {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => AdminPaymentTrackingScreen(tontineName: title)));
-                            } else Navigator.push(context, MaterialPageRoute(builder: (context) => TontineDetailScreen(tontineId: tontineId, tontineName: title)));
+                            } else {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => TontineDetailScreen(tontineId: tontineId, tontineName: title)));
+                            }
                           },
                           style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(0, 0), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                           child: Text(isCompleted ? 'ARCHIVES' : (role == 'Admin' ? 'GÉRER LE GROUPE' : 'VOIR DÉTAILS'), style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppTheme.textDark, decoration: TextDecoration.underline, decorationColor: AppTheme.primaryGold, decorationThickness: 2)),

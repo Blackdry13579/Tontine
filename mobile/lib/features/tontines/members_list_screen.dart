@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
-import '../../core/models/user_model.dart';
 import '../../core/providers/auth_provider.dart';
 import '../../core/providers/tontine_provider.dart';
 
@@ -162,8 +161,12 @@ class _MembersListScreenState extends State<MembersListScreen> {
                       children: [
                         CircleAvatar(
                           radius: 28,
-                          backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=${organizer['user_id']}'),
-                          backgroundColor: Colors.grey.shade200,
+                          backgroundColor: AppTheme.primaryGold,
+                          child: Text(
+                            ((organizer['prenom'] as String?)?.isNotEmpty == true ? organizer['prenom'][0] : 'O').toUpperCase() + 
+                            ((organizer['nom'] as String?)?.isNotEmpty == true ? organizer['nom'][0] : '').toUpperCase(),
+                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         if (isMe)
                           Positioned(
@@ -249,7 +252,12 @@ class _MembersListScreenState extends State<MembersListScreen> {
                 children: [
                   CircleAvatar(
                     radius: 24,
-                    backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=${member['user_id']}'),
+                    backgroundColor: AppTheme.primaryGold,
+                    child: Text(
+                      ((member['prenom'] as String?)?.isNotEmpty == true ? member['prenom'][0] : 'M').toUpperCase() + 
+                      ((member['nom'] as String?)?.isNotEmpty == true ? member['nom'][0] : '').toUpperCase(),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   if (isMe)
                     Positioned(

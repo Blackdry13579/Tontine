@@ -122,7 +122,7 @@ class _DistributionOrderScreenState extends State<DistributionOrderScreen> {
                   final member = _members[index];
                   final name = '${member['user_prenom'] ?? ''} ${member['user_nom'] ?? ''}';
                   final role = member['role'] ?? 'Membre';
-                  final img = member['user_photo_url'] ?? 'https://i.pravatar.cc/150?u=${member['user_id']}';
+                  final initials = name.trim().split(' ').map((e) => e.isNotEmpty ? e[0] : '').take(2).join().toUpperCase();
                   
                   return Container(
                     key: ValueKey(member['id']),
@@ -157,7 +157,11 @@ class _DistributionOrderScreenState extends State<DistributionOrderScreen> {
                         const SizedBox(width: 16),
                         CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(img),
+                          backgroundColor: AppTheme.primaryGold,
+                          child: Text(
+                            initials.isNotEmpty ? initials : 'U',
+                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -204,11 +208,12 @@ class _DistributionOrderScreenState extends State<DistributionOrderScreen> {
                     
                     await provider.updateMembershipOrder(widget.tontineId, orders);
                     
-                    if (provider.error != null && mounted) {
+                    if (!context.mounted) return;
+                    if (provider.error != null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(provider.error!), backgroundColor: Colors.red),
                       );
-                    } else if (mounted) {
+                    } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Ordre des bénéficiaires enregistré avec succès')),
                       );

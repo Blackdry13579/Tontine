@@ -79,21 +79,18 @@ class CompletedTontineDetailScreen extends StatelessWidget {
                       'Bénéficiaire Janvier',
                       '2,500,000 FCFA',
                       '01',
-                      'https://i.pravatar.cc/150?u=1',
                     ),
                     _buildPayoutItem(
                       'Koffi Kouamé',
                       'Bénéficiaire Février',
                       '2,500,000 FCFA',
                       '02',
-                      'https://i.pravatar.cc/150?u=2',
                     ),
                     _buildPayoutItem(
                       'Moussa Koné',
                       'Bénéficiaire Mars',
                       '2,500,000 FCFA',
                       '03',
-                      'https://i.pravatar.cc/150?u=3',
                     ),
 
                     const SizedBox(height: 12),
@@ -424,7 +421,6 @@ class CompletedTontineDetailScreen extends StatelessWidget {
     String subtitle,
     String amount,
     String rank,
-    String imgUrl,
   ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -445,7 +441,14 @@ class CompletedTontineDetailScreen extends StatelessWidget {
         children: [
           Stack(
             children: [
-              CircleAvatar(radius: 24, backgroundImage: NetworkImage(imgUrl)),
+              CircleAvatar(
+                radius: 24,
+                backgroundColor: AppTheme.primaryGold,
+                child: Text(
+                  name.isNotEmpty ? name[0].toUpperCase() : 'U',
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
               Positioned(
                 top: -2,
                 left: -2,

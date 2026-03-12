@@ -13,7 +13,7 @@ import 'widgets/tontine_history_tab.dart';
 import '../payment/payment_screen.dart';
 import 'create_tontine_screen.dart';
 import '../activities/launch_distribution_screen.dart';
-import 'members_list_screen.dart';
+import 'widgets/reorder_members_sheet.dart';
 
 class TontineDetailScreen extends StatefulWidget {
   final String tontineId;
@@ -38,7 +38,7 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _refreshData();
     });
@@ -60,7 +60,7 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
       
       if (mounted) {
         setState(() {
-          _currentCycleCotisations = cotis as List;
+          _currentCycleCotisations = cotis;
           _fetchingStats = false;
         });
       }
@@ -102,21 +102,38 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
               builder: (context, provider, _) {
                 final tontine = provider.currentTontine;
                 if (tontine != null && tontine.organisateurId == context.read<AuthProvider>().user?.id) {
-                  return IconButton(
-                    icon: const Icon(Symbols.settings, color: AppTheme.emeraldDark),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CreateTontineScreen(tontine: tontine),
-                        ),
-                      );
+                  return PopupMenuButton<String>(
+                    icon: const Icon(Symbols.more_vert, color: AppTheme.emeraldDark),
+                    offset: const Offset(0, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    onSelected: (value) {
+                      if (value == 'edit') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateTontineScreen(tontine: tontine),
+                          ),
+                        );
+                      } else if (value == 'status') {
+                        _showStatusDialog(context, tontine);
+                      } else if (value == 'order') {
+                        _showOrderSheet(context, tontine);
+                      }
                     },
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shadowColor: Colors.black.withValues(alpha: 0.05),
-                      elevation: 2,
-                    ),
+                    itemBuilder: (context) => [
+                      const PopupMenuItem(
+                        value: 'edit',
+                        child: Text('Paramètres de la tontine'),
+                      ),
+                      const PopupMenuItem(
+                        value: 'status',
+                        child: Text('Modifier le statut'),
+                      ),
+                      const PopupMenuItem(
+                        value: 'order',
+                        child: Text('Modifier ordre des membres'),
+                      ),
+                    ],
                   );
                 }
                 return const SizedBox.shrink();
@@ -170,7 +187,6 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
                         Tab(text: 'Aperçu'),
                         Tab(text: 'Membres'),
                         Tab(text: 'Historique'),
-                        Tab(text: 'Règlement'),
                       ],
                     ),
                   ),
@@ -181,12 +197,11 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
                     controller: _tabController,
                     children: [
                       _buildOverviewTab(tontine),
-                      _buildMembersTab(tontine),
+                      const TontineMembersTab(),
                       TontineHistoryTab(
                         tontineId: tontine.id, 
                         cycleId: tontine.currentCycleId,
                       ),
-                      const Center(child: Text('Règles de la tontine')),
                     ],
                   ),
                 ),
@@ -201,23 +216,6 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
           },
         ),
       ),
-    );
-  }
-
-  Widget _buildMembersTab(TontineModel tontine) {
-    return Column(
-      children: [
-        Expanded(child: TontineMembersTab()),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ElevatedButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(
-              builder: (_) => MembersListScreen(tontineId: widget.tontineId)
-            )),
-            child: const Text('VOIR TOUS LES MEMBRES'),
-          ),
-        ),
-      ],
     );
   }
 
@@ -308,7 +306,7 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
                 statusColor: statusColor,
                 isMe: isMe,
               );
-            }).toList(),
+            }),
 
           const SizedBox(height: 80), // Space for bottom button
         ],
@@ -575,7 +573,6 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
     required String subtitle,
     required String status,
     required Color statusColor,
-    String? imageUrl,
     bool isMe = false,
   }) {
     return Container(
@@ -620,9 +617,11 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
                 )
               : CircleAvatar(
                   radius: 20,
-                  backgroundImage: imageUrl != null
-                      ? NetworkImage(imageUrl)
-                      : null,
+                  backgroundColor: AppTheme.primaryGold,
+                  child: Text(
+                    name.isNotEmpty ? name[0].toUpperCase() : '?',
+                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                 ),
           const SizedBox(width: 12),
           Expanded(
@@ -804,6 +803,82 @@ class _TontineDetailScreenState extends State<TontineDetailScreen>
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  void _showOrderSheet(BuildContext context, TontineModel tontine) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => ReorderMembersSheet(tontineId: tontine.id),
+    );
+  }
+
+  void _showStatusDialog(BuildContext context, TontineModel tontine) {
+    final Map<String, String> statusMap = {
+      'en_attente': 'En attente',
+      'active': 'Active',
+      'terminee': 'Terminée',
+      'annulee': 'Annulée',
+    };
+
+    String selectedStatus = tontine.statut;
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) {
+          return AlertDialog(
+            title: const Text('Modifier le statut', style: TextStyle(color: AppTheme.emeraldDark)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: statusMap.entries.map((e) {
+                return RadioListTile<String>(
+                  title: Text(e.value, style: const TextStyle(fontSize: 14)),
+                  value: e.key,
+                  // ignore: deprecated_member_use
+                  groupValue: selectedStatus,
+                  activeColor: AppTheme.primaryGold,
+                  fillColor: WidgetStateProperty.all(AppTheme.primaryGold),
+                  contentPadding: EdgeInsets.zero,
+                  // ignore: deprecated_member_use
+                  onChanged: (value) {
+                    if (value != null) {
+                      setState(() => selectedStatus = value);
+                    }
+                  },
+                );
+              }).toList(),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('ANNULER', style: TextStyle(color: Colors.grey)),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final provider = context.read<TontineProvider>();
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  Navigator.pop(context);
+                  
+                  if (selectedStatus != tontine.statut) {
+                    await provider.updateTontineStatus(tontine.id, selectedStatus);
+                    _refreshData();
+                    if (mounted) {
+                      scaffoldMessenger.showSnackBar(
+                        const SnackBar(content: Text('Statut mis à jour avec succès')),
+                      );
+                    }
+                  }
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryGold),
+                child: const Text('ENREGISTRER', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          );
+        }
       ),
     );
   }

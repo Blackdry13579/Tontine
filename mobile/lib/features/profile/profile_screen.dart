@@ -8,6 +8,7 @@ import '../welcome/welcome_screen.dart';
 import '../../shared/widgets/app_bottom_nav.dart';
 import 'security_screen.dart';
 import 'help_center_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,9 +23,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    _loadNotificationPreference();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<AuthProvider>().fetchProfile();
     });
+  }
+
+  Future<void> _loadNotificationPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _notificationsEnabled = prefs.getBool('notifications_enabled') ?? true;
+    });
+  }
+
+  Future<void> _toggleNotifications(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('notifications_enabled', value);
+    setState(() => _notificationsEnabled = value);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(value ? 'Notifications activées' : 'Notifications désactivées'),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   void _handleLogout() async {
@@ -90,11 +113,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ],
                               ),
-                              child: CircleAvatar(
-                                radius: 68,
-                                backgroundColor: Colors.white,
-                                backgroundImage: NetworkImage(user?.photoUrl ?? 'https://i.pravatar.cc/150?u=${user?.id ?? "default"}'),
-                              ),
+                                child: CircleAvatar(
+                                  radius: 68,
+                                  backgroundColor: AppTheme.primaryGold,
+                                  child: Text(
+                                    user?.prenom?.isNotEmpty == true ? user!.prenom![0].toUpperCase() : 'U', 
+                                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 48),
+                                  ),
+                                ),
                             ),
                             Positioned(
                               bottom: 4,
@@ -213,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             label: 'Notifications',
                             trailing: Switch(
                               value: _notificationsEnabled,
-                              onChanged: (value) => setState(() => _notificationsEnabled = value),
+                              onChanged: _toggleNotifications,
                               activeThumbColor: const Color(0xFF1B5E20),
                             ),
                           ),

@@ -91,7 +91,7 @@ class AuthProvider with ChangeNotifier {
     _setLoading(true);
     _error = null;
     try {
-      final response = await _apiClient.put('/auth/profile', data: userData);
+      final response = await _apiClient.put('/auth/me', data: userData);
       _user = UserModel.fromJson(response.data['user'] ?? response.data);
       notifyListeners();
     } on DioException catch (e) {

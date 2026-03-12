@@ -33,12 +33,11 @@ class _AdminPaymentTrackingScreenState extends State<AdminPaymentTrackingScreen>
   Future<void> _loadPendingPayments() async {
     final provider = context.read<TransactionProvider>();
     final data = await provider.fetchPendingValidations();
-    if (mounted) {
-      setState(() {
-        _pendingPayments = (data as List).map((e) => CotisationModel.fromJson(e)).toList();
-        _isLoading = false;
-      });
-    }
+    if (!mounted) return;
+    setState(() {
+      _pendingPayments = data.map<CotisationModel>((e) => CotisationModel.fromJson(e as Map<String, dynamic>)).toList();
+      _isLoading = false;
+    });
   }
 
   @override
@@ -407,7 +406,9 @@ class _AdminPaymentTrackingScreenState extends State<AdminPaymentTrackingScreen>
     );
 
     if (confirmed == true) {
+      if (!mounted) return;
       await context.read<TransactionProvider>().validateCotisation(cotisation.id);
+      if (!mounted) return;
       _loadPendingPayments(); // Refresh
     }
   }
@@ -430,7 +431,9 @@ class _AdminPaymentTrackingScreenState extends State<AdminPaymentTrackingScreen>
     );
 
     if (motif != null && motif.isNotEmpty) {
+      if (!mounted) return;
       await context.read<TransactionProvider>().rejectCotisation(cotisation.id, motif);
+      if (!mounted) return;
       _loadPendingPayments(); // Refresh
     }
   }
@@ -520,23 +523,20 @@ class _AdminPaymentTrackingScreenState extends State<AdminPaymentTrackingScreen>
                 children: [
                   CircleAvatar(
                     radius: 14,
-                    backgroundImage: NetworkImage(
-                      'https://i.pravatar.cc/150?u=1',
-                    ),
+                    backgroundColor: AppTheme.primaryGold,
+                    child: Text('A', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(width: -8),
                   CircleAvatar(
                     radius: 14,
-                    backgroundImage: NetworkImage(
-                      'https://i.pravatar.cc/150?u=2',
-                    ),
+                    backgroundColor: AppTheme.primaryGold,
+                    child: Text('B', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(width: -8),
                   CircleAvatar(
                     radius: 14,
-                    backgroundImage: NetworkImage(
-                      'https://i.pravatar.cc/150?u=3',
-                    ),
+                    backgroundColor: AppTheme.primaryGold,
+                    child: Text('C', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                   ),
                   SizedBox(width: 8),
                   Text(
@@ -569,128 +569,6 @@ class _AdminPaymentTrackingScreenState extends State<AdminPaymentTrackingScreen>
                   ],
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMemberItem({
-    required String name,
-    required String subtitle,
-    required String status,
-    required Color statusColor,
-    required String imageUrl,
-    bool isPaid = false,
-    bool isPending = false,
-    bool isLate = false,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: isLate
-            ? const Border(left: BorderSide(color: Colors.red, width: 4))
-            : Border.all(color: AppTheme.emeraldDark.withValues(alpha: 0.05)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Stack(
-            children: [
-              CircleAvatar(radius: 24, backgroundImage: NetworkImage(imageUrl)),
-              if (isPaid)
-                Positioned(
-                  bottom: -2,
-                  right: -2,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: const BoxDecoration(
-                      color: Colors.green,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Symbols.check,
-                      color: Colors.white,
-                      size: 10,
-                      weight: 700,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: AppTheme.emeraldDark,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: isLate ? Colors.red : Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: statusColor.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  status,
-                  style: TextStyle(
-                    fontSize: 9,
-                    fontWeight: FontWeight.bold,
-                    color: statusColor,
-                  ),
-                ),
-              ),
-              if (!isPaid) ...[
-                const SizedBox(width: 8),
-                Container(
-                  height: 32,
-                  width: 32,
-                  decoration: BoxDecoration(
-                    color: isLate
-                        ? AppTheme.primaryGold
-                        : AppTheme.primaryGold.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    isLate
-                        ? Symbols.notifications_active
-                        : Symbols.notifications,
-                    color: isLate ? Colors.white : AppTheme.primaryGold,
-                    size: 16,
-                  ),
-                ),
-              ],
             ],
           ),
         ],

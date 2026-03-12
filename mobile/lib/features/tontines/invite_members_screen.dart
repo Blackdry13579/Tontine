@@ -180,22 +180,18 @@ class InviteMembersScreen extends StatelessWidget {
                 time: 'Invité il y a 2h',
                 status: 'En attente',
                 isJoined: false,
-                imageUrl: 'https://i.pravatar.cc/150?u=amadou',
               ),
               _buildInvitedMember(
                 name: 'Fatou Sow',
                 time: 'Invité hier',
                 status: 'Rejoint',
                 isJoined: true,
-                imageUrl: 'https://i.pravatar.cc/150?u=fatousow',
               ),
               _buildInvitedMember(
                 name: 'Koffi Mensah',
                 time: 'Invité il y a 3 jours',
                 status: 'En attente',
                 isJoined: false,
-                imageUrl: 'https://i.pravatar.cc/150?u=koffim',
-                opacity: 0.7,
               ),
 
               const SizedBox(height: 40),
@@ -317,7 +313,6 @@ class InviteMembersScreen extends StatelessWidget {
     required String time,
     required String status,
     required bool isJoined,
-    required String imageUrl,
     double opacity = 1.0,
   }) {
     return Opacity(
@@ -335,16 +330,18 @@ class InviteMembersScreen extends StatelessWidget {
             Container(
               width: 48,
               height: 48,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
+                color: AppTheme.primaryGold,
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: AppTheme.primaryGold.withValues(alpha: 0.3),
                   width: 2,
                 ),
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
-                ),
+              ),
+              child: Text(
+                name.isNotEmpty ? name[0].toUpperCase() : 'U',
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
             const SizedBox(width: 16),

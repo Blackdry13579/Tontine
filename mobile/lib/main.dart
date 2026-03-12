@@ -7,9 +7,20 @@ import 'core/providers/transaction_provider.dart';
 import 'core/providers/notification_provider.dart';
 import 'core/providers/distribution_provider.dart';
 import 'theme/app_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'features/welcome/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint('Firebase not configured: $e');
+  }
+
   final apiClient = ApiClient();
   
   runApp(

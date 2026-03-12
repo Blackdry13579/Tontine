@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../theme/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:local_auth/local_auth.dart';
+import '../auth/pin_login_screen.dart';
 
 class SecurityScreen extends StatefulWidget {
   const SecurityScreen({super.key});
@@ -10,7 +15,104 @@ class SecurityScreen extends StatefulWidget {
 }
 
 class _SecurityScreenState extends State<SecurityScreen> {
-  bool _biometricsEnabled = true;
+  final _storage = const FlutterSecureStorage();
+  final LocalAuthentication _auth = LocalAuthentication();
+  bool _biometricsEnabled = false;
+  bool _pinExists = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedPin = await _storage.read(key: 'user_pin');
+    setState(() {
+      _biometricsEnabled = prefs.getBool('biometrics_enabled') ?? false;
+      _pinExists = savedPin != null;
+    });
+  }
+
+  Future<void> _toggleBiometrics(bool value) async {
+    if (kIsWeb) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('La biométrie est disponible uniquement sur mobile.')),
+      );
+      return;
+    }
+
+    final bool canAuthenticateWithBiometrics = await _auth.canCheckBiometrics;
+    final bool canAuthenticate = canAuthenticateWithBiometrics || await _auth.isDeviceSupported();
+
+    if (!canAuthenticate && value) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Votre appareil ne supporte pas la biométrie.')),
+        );
+      }
+      return;
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('biometrics_enabled', value);
+    setState(() => _biometricsEnabled = value);
+    
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(value ? 'Biométrie activée' : 'Biométrie désactivée'),
+          backgroundColor: const Color(0xFF1B5E20),
+        ),
+      );
+    }
+  }
+
+  Future<void> _removePin() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Supprimer le code PIN ?'),
+        content: const Text('La suppression du code PIN diminuera la sécurité de votre compte.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('ANNULER'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('SUPPRIMER'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      await _storage.delete(key: 'user_pin');
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('biometrics_enabled', false);
+      setState(() {
+        _pinExists = false;
+        _biometricsEnabled = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Code PIN supprimé'), backgroundColor: Colors.orange),
+        );
+      }
+    }
+  }
+
+  void _modifierPin() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const PinLoginScreen(mode: PinMode.change),
+      ),
+    ).then((_) => _loadSettings());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +170,9 @@ class _SecurityScreenState extends State<SecurityScreen> {
                         children: [
                           _buildSecurityTile(
                             icon: Symbols.lock,
-                            title: 'Modifier le code PIN',
-                            subtitle: 'Dernière modification il y a 3 mois',
-                            onTap: () {},
+                            title: _pinExists ? 'Modifier le code PIN' : 'Configurer un code PIN',
+                            subtitle: _pinExists ? 'Activé' : 'Non configuré',
+                            onTap: _modifierPin,
                           ),
                           const Divider(height: 1, indent: 64, color: Color(0xFFF1F5F9)),
                           _buildSecurityTile(
@@ -79,7 +181,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
                             subtitle: 'Utilisez Face ID ou votre empreinte',
                             trailing: Switch(
                               value: _biometricsEnabled,
-                              onChanged: (value) => setState(() => _biometricsEnabled = value),
+                              onChanged: _toggleBiometrics,
                               activeThumbColor: AppTheme.primaryGold,
                             ),
                           ),
@@ -88,8 +190,8 @@ class _SecurityScreenState extends State<SecurityScreen> {
                             icon: Symbols.delete_outline,
                             iconColor: Colors.grey.shade400,
                             title: 'Supprimer le code PIN',
-                            subtitle: 'Nécessite une vérification supplémentaire',
-                            onTap: () {},
+                            subtitle: 'Efface vos accès locaux',
+                            onTap: _pinExists ? _removePin : null,
                           ),
                         ],
                       ),
@@ -141,11 +243,14 @@ class _SecurityScreenState extends State<SecurityScreen> {
                           height: 120,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: const DecorationImage(
-                              image: NetworkImage('https://lh3.googleusercontent.com/aida-public/AB6AXuAbtu2FUeVbfXhX3bD5aMLtc0kDdnb0x361Sksp6iPIHBFvEEBxCDdoY3wDE9XwuPLHuBDZtuG4VPSkMdm1ILrWM579wJGU_5YOYxJocsI3NV9QUeRPPbvHGa3YqOdtqN_YLxSdK6Bq2Y29e6YwKv2Ql9G8JhpxlWaShNRJu65vmcWDfGhWBjOda-35z1Psar5Fxaa2m7KscpgRE6SvMXvBl29bv4LA2eOwDcx_xp6mVsu_VfrdFftfG2MHr4iyQQCINk0iaChtc64'),
-                              fit: BoxFit.cover,
-                            ),
                             color: Colors.grey.withValues(alpha: 0.1),
+                          ),
+                          child: const CircleAvatar(
+                            backgroundColor: AppTheme.primaryGold,
+                            child: Text(
+                              'A',
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 48),
+                            ),
                           ),
                         ),
                       ),

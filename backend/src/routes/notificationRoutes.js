@@ -16,6 +16,7 @@ const settingsSchema = Joi.object({
 router.get('/', auth, notificationController.getNotifications);
 router.put('/tout-lire', auth, notificationController.markAllRead);
 router.put('/:id/lire', auth, notificationController.markRead);
+router.put('/:id/lue', auth, notificationController.markRead);
 router.get('/settings', auth, notificationController.getSettings);
 router.put('/settings', auth, validate(settingsSchema), notificationController.updateSettings);
 router.post('/tontine/:id/rappeler-tous', auth, checkRole('organisateur', 'admin'), notificationController.remindAll);

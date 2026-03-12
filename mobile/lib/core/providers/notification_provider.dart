@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import '../api/api_client.dart';
 import '../models/notification_model.dart';
 
@@ -7,68 +6,79 @@ class NotificationProvider with ChangeNotifier {
   final ApiClient _apiClient;
   
   List<NotificationModel> _notifications = [];
-  int _unreadCount = 0;
   bool _isLoading = false;
   String? _error;
-  bool _mounted = true;
 
   NotificationProvider(this._apiClient);
-  
-  @override
-  void dispose() {
-    _mounted = false;
-    super.dispose();
-  }
 
   List<NotificationModel> get notifications => _notifications;
-  int get unreadCount => _unreadCount;
   bool get isLoading => _isLoading;
   String? get error => _error;
+  int get unreadCount => _notifications.where((n) => !n.lu).length;
 
   Future<void> fetchNotifications() async {
-    _setLoading(true);
+    _isLoading = true;
     _error = null;
+    notifyListeners();
+
     try {
       final response = await _apiClient.get('/notifications');
+      final List<dynamic> data = response.data['notifications'] ?? response.data;
+      _notifications = data.map((n) => NotificationModel.fromJson(n)).toList();
       
-      final dynamic responseData = response.data;
-      final List<dynamic> data = responseData is List ? responseData : (responseData['data'] ?? []);
-      
-      _notifications = data.map((item) => NotificationModel.fromJson(item)).toList();
-      _unreadCount = _notifications.where((n) => !n.lu).length;
-      notifyListeners();
-    } on DioException catch (e) {
-      _error = e.error.toString();
+      // Sort by date (most recent first)
+      _notifications.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     } catch (e) {
-      _error = 'Erreur lors du chargement des notifications';
+      _error = 'Impossible de charger les notifications';
+      debugPrint('Error fetching notifications: $e');
     } finally {
-      if (_mounted) _setLoading(false);
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> markAsRead(String id) async {
+    try {
+      await _apiClient.put('/notifications/$id/lue');
+      
+      // Update local state
+      final index = _notifications.indexWhere((n) => n.id == id);
+      if (index != -1) {
+        final n = _notifications[index];
+        _notifications[index] = NotificationModel(
+          id: n.id,
+          titre: n.titre,
+          message: n.message,
+          type: n.type,
+          lu: true,
+          createdAt: n.createdAt,
+          data: n.data,
+        );
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint('Error marking notification as read: $e');
     }
   }
 
   Future<void> markAllAsRead() async {
     try {
-      await _apiClient.put('/notifications/read-all');
-      for (var i = 0; i < _notifications.length; i++) {
+      await _apiClient.put('/notifications/toutes/lues');
+      for (int i = 0; i < _notifications.length; i++) {
+        final n = _notifications[i];
         _notifications[i] = NotificationModel(
-          id: _notifications[i].id,
-          titre: _notifications[i].titre,
-          message: _notifications[i].message,
-          type: _notifications[i].type,
+          id: n.id,
+          titre: n.titre,
+          message: n.message,
+          type: n.type,
           lu: true,
-          createdAt: _notifications[i].createdAt,
-          data: _notifications[i].data,
+          createdAt: n.createdAt,
+          data: n.data,
         );
       }
-      _unreadCount = 0;
       notifyListeners();
     } catch (e) {
-      // Ignore error for mark as read
+      debugPrint('Error marking all notifications as read: $e');
     }
-  }
-
-  void _setLoading(bool value) {
-    _isLoading = value;
-    if (_mounted) notifyListeners();
   }
 }

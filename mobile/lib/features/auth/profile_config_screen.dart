@@ -4,6 +4,10 @@ import 'package:provider/provider.dart';
 import '../../theme/app_theme.dart';
 import '../../core/providers/auth_provider.dart';
 import '../home/home_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart'; // for kIsWeb
 
 class ProfileConfigScreen extends StatefulWidget {
   final String phoneNumber;
@@ -45,6 +49,8 @@ class _ProfileConfigScreenState extends State<ProfileConfigScreen> {
     super.dispose();
   }
 
+  bool _isUploading = false;
+
   void _handleSubmit() async {
     final authProvider = context.read<AuthProvider>();
     
@@ -65,17 +71,66 @@ class _ProfileConfigScreenState extends State<ProfileConfigScreen> {
     // Mise à jour du profil via l'API
     await authProvider.updateProfile(userData);
 
-    if (mounted) {
-      if (authProvider.error != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(authProvider.error!), backgroundColor: Colors.red),
-        );
+    if (!mounted) return;
+    if (authProvider.error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(authProvider.error!), backgroundColor: Colors.red),
+      );
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        (route) => false,
+      );
+    }
+  }
+
+  Future<void> _pickAndUploadImage() async {
+    final authProvider = context.read<AuthProvider>();
+    final user = authProvider.user;
+    final userId = user?.id;
+    if (userId == null) return;
+
+    try {
+      final picker = ImagePicker();
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      
+      if (!mounted) return;
+      setState(() => _isUploading = true);
+      
+      final storageRef = FirebaseStorage.instance.ref().child('profiles/$userId.jpg');
+      
+      if (kIsWeb) {
+        await storageRef.putData(await image.readAsBytes());
       } else {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-          (route) => false,
-        );
+        await storageRef.putFile(File(image.path));
+      }
+      
+      final photoUrl = await storageRef.getDownloadURL();
+      
+      // Save directly to the backend
+      await authProvider.updateProfile({
+        'nom': user?.nom ?? '',
+        'prenom': user?.prenom ?? '',
+        'email': user?.email ?? '',
+        'ville': user?.roleSysteme ?? '',
+        'photo_url': photoUrl,
+      });
+      
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Photo mise à jour avec succès'))
+      );
+    } catch(e) {
+      debugPrint('Upload error: $e');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Erreur lors du changement de la photo'), backgroundColor: Colors.red)
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isUploading = false);
       }
     }
   }
@@ -139,32 +194,42 @@ class _ProfileConfigScreenState extends State<ProfileConfigScreen> {
                                   ),
                                 ],
                               ),
-                              child: CircleAvatar(
-                                radius: 64,
-                                backgroundColor: Colors.white,
-                                backgroundImage: NetworkImage(
-                                  user?.photoUrl ?? 
-                                  'https://i.pravatar.cc/150?u=${widget.phoneNumber}'
-                                ),
-                              ),
+                                child: user?.photoUrl != null
+                                    ? CircleAvatar(
+                                        radius: 64,
+                                        backgroundImage: NetworkImage(user!.photoUrl!),
+                                      )
+                                    : CircleAvatar(
+                                        radius: 64,
+                                        backgroundColor: AppTheme.primaryGold,
+                                        child: Text(
+                                          user?.prenom?.isNotEmpty == true ? user!.prenom![0].toUpperCase() : 'U',
+                                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),
+                                        ),
+                                      ),
                             ),
                             Positioned(
                               bottom: 0,
                               right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.primaryGold,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: AppTheme.creamLight, width: 2),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.2),
-                                      blurRadius: 10,
-                                    ),
-                                  ],
+                              child: GestureDetector(
+                                onTap: _pickAndUploadImage,
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: AppTheme.primaryGold,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: AppTheme.creamLight, width: 2),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(alpha: 0.2),
+                                        blurRadius: 10,
+                                      ),
+                                    ],
+                                  ),
+                                  child: _isUploading
+                                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                                      : const Icon(Symbols.photo_camera, color: Colors.white, size: 20),
                                 ),
-                                child: const Icon(Symbols.photo_camera, color: Colors.white, size: 20),
                               ),
                             ),
                           ],

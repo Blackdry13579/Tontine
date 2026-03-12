@@ -11,8 +11,6 @@ import '../tontines/tontine_detail_screen.dart';
 import '../tontines/tontine_list_screen.dart';
 import '../tontines/create_tontine_screen.dart';
 import '../tontines/invite_members_screen.dart';
-import '../activities/wallet_screen.dart';
-import '../activities/admin_dashboard_screen.dart';
 import '../payment/payment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -70,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         border: Border.all(color: AppTheme.primaryGold.withValues(alpha: 0.2), width: 2),
-                                        image: DecorationImage(
-                                          image: NetworkImage(user?.photoUrl ?? 'https://i.pravatar.cc/150?u=${user?.id ?? "default"}'),
-                                          fit: BoxFit.cover,
-                                        ),
+                                        color: AppTheme.primaryGold,
+                                      ),
+                                      child: Center(
+                                        child: Text(user?.prenom?.isNotEmpty == true ? user!.prenom![0].toUpperCase() : 'U', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
                                       ),
                                     ),
                                     Container(
@@ -437,8 +435,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
                 children: [
-                  const CircleAvatar(radius: 10, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=4')),
-                  const Positioned(left: 14, child: CircleAvatar(radius: 10, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=5'))),
+                  const CircleAvatar(radius: 10, backgroundColor: AppTheme.primaryGold, child: Text('A', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold))),
+                  const Positioned(left: 14, child: CircleAvatar(radius: 10, backgroundColor: AppTheme.primaryGold, child: Text('B', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)))),
                   const SizedBox(width: 36),
                   const Positioned(left: 30, child: Text('+8', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold, color: Colors.grey))),
                 ],
@@ -451,83 +449,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildFAB() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const CreateTontineScreen()));
-      },
-      child: Container(
-        height: 64,
-        width: 64,
-        margin: const EdgeInsets.only(top: 24),
-        decoration: BoxDecoration(
-          color: AppTheme.primaryGold,
-          shape: BoxShape.circle,
-          border: Border.all(color: AppTheme.emeraldDark, width: 4),
-          boxShadow: [
-            BoxShadow(
-              color: AppTheme.primaryGold.withValues(alpha: 0.4),
-              blurRadius: 15,
-              offset: const Offset(0, 8),
-            ),
-          ],
-        ),
-        child: const Icon(Symbols.add, color: Colors.white, size: 32, weight: 700),
-      ),
-    );
-  }
-
-  Widget _buildBottomNav() {
-    return BottomAppBar(
-      height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      color: Colors.white,
-      notchMargin: 12,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(Symbols.home, 'ACCUEIL', true,
-            onTap: () {}),
-          _buildNavItem(Symbols.pie_chart, 'TONTINES', false,
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TontineListScreen()))),
-          const SizedBox(width: 48), // Space for FAB
-          _buildNavItem(Symbols.account_balance_wallet, 'WALLET', false,
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const WalletScreen()))),
-          Consumer<AuthProvider>(
-            builder: (context, auth, _) {
-              final isAdmin = auth.user?.roleSysteme == 'admin';
-              return _buildNavItem(
-                Symbols.person,
-                'PROFIL',
-                false,
-                onTap: () {
-                  if (isAdmin) {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const AdminDashboardScreen()));
-                  }
-                }
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, bool isSelected, {required VoidCallback onTap}) {
-    final color = isSelected ? AppTheme.primaryGold : Colors.grey.shade400;
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: color, fill: isSelected ? 1 : 0),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: color, letterSpacing: 0.5),
-          ),
-        ],
-      ),
-    );
-  }
 }

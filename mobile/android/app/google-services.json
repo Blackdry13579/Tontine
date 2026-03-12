@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939273834298",
+    "project_id": "aurum-tontine",
+    "storage_bucket": "aurum-tontine.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939273834298:android:fd86b12d7d366879698a03",
+        "android_client_info": {
+          "package_name": "com.aurum.tontine.mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB57we2FCjPJeIohoc7e60Q_-tiA9ucF7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

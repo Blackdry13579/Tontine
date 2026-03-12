@@ -185,6 +185,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   'prenom_expediteur': _nameController.text.contains(' ') ? _nameController.text.split(' ').sublist(1).join(' ') : ' ',
                                 });
 
+                                if (!context.mounted) return;
                                 if (provider.error == null) {
                                   Navigator.push(
                                     context,

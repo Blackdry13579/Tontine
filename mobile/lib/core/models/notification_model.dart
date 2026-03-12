@@ -23,8 +23,8 @@ class NotificationModel {
       titre: json['titre'] ?? '',
       message: json['description'] ?? json['message'] ?? '',
       type: json['type'] ?? 'info',
-      lu: json['lu'] ?? false,
-      createdAt: DateTime.parse(json['created_at'] ?? DateTime.now().toIso8601String()),
+      lu: json['lu'] ?? json['est_lue'] ?? false,
+      createdAt: DateTime.parse(json['created_at'] ?? json['date_creation'] ?? DateTime.now().toIso8601String()),
       data: json['data'] is Map<String, dynamic> ? json['data'] : null,
     );
   }

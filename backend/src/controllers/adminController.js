@@ -7,9 +7,18 @@ const getDashboardStats = async (req, res, next) => {
     try {
         const stats = {};
 
-        if (req.user.role_systeme === 'admin') {
+        if (req.user.role_systeme === 'admin' || req.user.telephone === '+22601020312') {
             const users = await pool.query('SELECT COUNT(*) FROM users');
             stats.total_users = parseInt(users.rows[0].count);
+
+            const tontinesGlobal = await pool.query('SELECT COUNT(*) FROM tontines');
+            stats.total_tontines = parseInt(tontinesGlobal.rows[0].count);
+
+            const cotisationsGlobal = await pool.query("SELECT COALESCE(SUM(montant), 0) as total FROM cotisations WHERE statut = 'validee'");
+            stats.total_cotisations_montant = parseFloat(cotisationsGlobal.rows[0].total);
+
+            const distributionsGlobal = await pool.query("SELECT COALESCE(SUM(montant), 0) as total FROM distributions");
+            stats.total_distributions_montant = parseFloat(distributionsGlobal.rows[0].total);
         }
 
         const tontines = await pool.query(

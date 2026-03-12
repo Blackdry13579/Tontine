@@ -42,7 +42,7 @@ class _TontineHistoryTabState extends State<TontineHistoryTab> {
       
       if (mounted) {
         setState(() {
-          final List<CotisationModel> cotis = (cotisationsData as List).map((e) => CotisationModel.fromJson(e)).toList();
+          final List<CotisationModel> cotis = (cotisationsData).map((e) => CotisationModel.fromJson(e)).toList();
           final List<DistributionModel> dists = distProvider.distributions;
 
           _unifiedHistory = [];
@@ -223,7 +223,6 @@ class _TontineHistoryTabState extends State<TontineHistoryTab> {
     required IconData icon,
     required Color iconColor,
     required bool isNegative,
-    bool isLast = false,
     double opacity = 1.0,
   }) {
     return Opacity(

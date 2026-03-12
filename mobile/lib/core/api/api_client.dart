@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter/foundation.dart';
 import '../config/app_config.dart';
 
 class ApiClient {
@@ -85,11 +84,6 @@ class ApiClient {
         },
       ),
     );
-  }
-
-  // Helper privé pour dev mode
-  bool _isDevMode() {
-    return kDebugMode;
   }
 
   Dio get dio => _dio;

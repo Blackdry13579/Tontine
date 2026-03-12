@@ -3,8 +3,93 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../theme/app_theme.dart';
 import '../../shared/widgets/app_bottom_nav.dart';
 
+import 'report_problem_screen.dart';
+
 class HelpCenterScreen extends StatelessWidget {
   const HelpCenterScreen({super.key});
+
+  static const List<Map<String, String>> _faqs = [
+    {
+      'q': 'Comment créer une tontine ?',
+      'a': 'Allez dans l\'onglet Tontines, cliquez sur le bouton "+" ou "Créer une tontine", et remplissez les détails comme le nom, le montant de la cotisation et la fréquence.'
+    },
+    {
+      'q': 'Comment inviter des membres ?',
+      'a': 'Une fois votre tontine créée, un code d\'invitation unique est généré. Partagez ce code avec vos amis pour qu\'ils puissent rejoindre le groupe.'
+    },
+    {
+      'q': 'Quand est-ce que je reçois ma distribution ?',
+      'a': 'La distribution se fait selon l\'ordre défini lors du tirage au sort initial. Chaque membre reçoit le pot total une fois durant le cycle de la tontine.'
+    },
+    {
+      'q': 'Comment soumettre une cotisation ?',
+      'a': 'Allez dans les détails de votre tontine, cliquez sur "Payer ma cotisation" et téléchargez une capture d\'écran de votre preuve de transfert.'
+    },
+    {
+      'q': 'Que se passe-t-il si je rate un paiement ?',
+      'a': 'En cas de retard, des pénalités peuvent être appliquées selon les règles du groupe. Contactez l\'organisateur pour trouver un arrangement.'
+    },
+    {
+      'q': 'Puis-je quitter une tontine en cours ?',
+      'a': 'Il est généralement impossible de quitter une tontine avant la fin du cycle par respect pour les autres membres. Un remplaçant doit être trouvé.'
+    },
+    {
+      'q': 'Comment est défini l\'ordre des gagnants ?',
+      'a': 'L\'ordre est défini par un tirage au sort transparent effectué au lancement de la tontine par l\'algorithme AURUM.'
+    },
+    {
+      'q': 'Quels sont les frais de service ?',
+      'a': 'AURUM prélève une commission minime sur chaque tontine pour garantir la maintenance et la sécurité du service. Voir les détails lors de la création.'
+    },
+    {
+      'q': 'Mes données sont-elles sécurisées ?',
+      'a': 'Oui, toutes vos données sont chiffrées et nous utilisons des protocoles de sécurité bancaire pour protéger vos informations.'
+    },
+    {
+      'q': 'Comment changer mon code PIN ?',
+      'a': 'Allez dans Profil > Sécurité > Modifier le code PIN. Vous devrez saisir votre ancien code avant d\'en définir un nouveau.'
+    },
+    {
+      'q': 'Puis-je avoir plusieurs tontines ?',
+      'a': 'Oui, vous pouvez participer à autant de tontines que votre budget le permet. Gérez-les toutes depuis votre tableau de bord.'
+    },
+    {
+      'q': 'Comment valider le paiement d\'un membre ?',
+      'a': 'Si vous êtes l\'organisateur, allez dans l\'onglet Admin de la tontine pour voir les preuves de paiement et les valider d\'un clic.'
+    },
+    {
+      'q': 'Que faire en cas de litige ?',
+      'a': 'Essayez d\'abord de discuter avec les membres. Si le problème persiste, utilisez la fonction "Signaler un problème" pour contacter notre support.'
+    },
+    {
+      'q': 'Comment fonctionne le portefeuille ?',
+      'a': 'Le Wallet affiche votre solde disponible issu des gains de tontines. Vous pouvez retirer ces fonds vers votre compte mobile money.'
+    },
+    {
+      'q': 'Puis-je retirer mon argent à tout moment ?',
+      'a': 'Vous pouvez retirer les fonds présents dans votre Wallet à tout moment. Les cotisations bloquées dans une tontine ne sont pas retirables avant votre tour.'
+    },
+    {
+      'q': 'Comment activer la biométrie ?',
+      'a': 'Allez dans Profil > Sécurité et activez le toggle "Activer la biométrie". Votre téléphone doit supporter Face ID ou l\'empreinte digitale.'
+    },
+    {
+      'q': 'Pourquoi ma preuve a été rejetée ?',
+      'a': 'Une preuve est rejetée si elle est illisible, si le montant est incorrect ou si elle a déjà été utilisée. Contactez votre organisateur.'
+    },
+    {
+      'q': 'Comment supprimer mon compte ?',
+      'a': 'Allez dans Profil > Gestion du compte > Se déconnecter, puis contactez le support pour une demande de suppression définitive.'
+    },
+    {
+      'q': 'Comment contacter le support ?',
+      'a': 'Utilisez la section "Contacter le support" ci-dessous pour nous envoyer un email ou réservez un créneau d\'appel avec nos experts.'
+    },
+    {
+      'q': 'Y a-t-il une limite de montant ?',
+      'a': 'Non, AURUM n\'impose pas de limite arbitraire, mais nous conseillons de rester dans des montants raisonnables pour la sécurité du groupe.'
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +145,12 @@ class HelpCenterScreen extends StatelessWidget {
                     _buildHelpTile(
                       icon: Symbols.support_agent,
                       iconColor: Colors.blue,
-                      title: 'Contacter le support',
+                      title: 'Signaler un problème',
                       subtitle: 'Discutez avec notre équipe',
-                      onTap: () {},
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const ReportProblemScreen()),
+                      ),
                     ),
                     const Divider(height: 1, indent: 72, color: Color(0xFFF1F5F9)),
                     _buildHelpTile(
@@ -74,6 +162,65 @@ class HelpCenterScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              
+              const SizedBox(height: 32),
+              
+              // --- FAQ SECTION ---
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 4, bottom: 16),
+                  child: Text(
+                    'Questions fréquentes',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppTheme.textDark,
+                    ),
+                  ),
+                ),
+              ),
+              
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _faqs.length,
+                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+                    ),
+                    child: ExpansionTile(
+                      shape: const RoundedRectangleBorder(side: BorderSide.none),
+                      collapsedShape: const RoundedRectangleBorder(side: BorderSide.none),
+                      title: Text(
+                        _faqs[index]['q']!,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.textDark,
+                        ),
+                      ),
+                      iconColor: AppTheme.primaryGold,
+                      collapsedIconColor: Colors.grey,
+                      childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      children: [
+                        Text(
+                          _faqs[index]['a']!,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[700],
+                            height: 1.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
               
               const SizedBox(height: 32),

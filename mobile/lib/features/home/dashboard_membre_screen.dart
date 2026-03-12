@@ -13,6 +13,8 @@ import '../tontines/tontine_list_screen.dart';
 import '../tontines/create_tontine_screen.dart';
 import '../tontines/invite_members_screen.dart';
 import '../payment/payment_screen.dart';
+import '../../core/providers/notification_provider.dart';
+import '../profile/notification_screen.dart';
 
 class DashboardMembreScreen extends StatefulWidget {
   const DashboardMembreScreen({super.key});
@@ -29,6 +31,7 @@ class _DashboardMembreScreenState extends State<DashboardMembreScreen> {
       context.read<AuthProvider>().fetchProfile();
       context.read<TransactionProvider>().fetchHistory();
       context.read<TontineProvider>().fetchTontines();
+      context.read<NotificationProvider>().fetchNotifications();
     });
   }
 
@@ -48,6 +51,8 @@ class _DashboardMembreScreenState extends State<DashboardMembreScreen> {
               await auth.fetchProfile();
               await tx.fetchHistory();
               await tontine.fetchTontines();
+              if (!context.mounted) return;
+              await context.read<NotificationProvider>().fetchNotifications();
             },
             color: AppTheme.primaryGold,
             child: CustomScrollView(
@@ -65,8 +70,8 @@ class _DashboardMembreScreenState extends State<DashboardMembreScreen> {
                               children: [
                                 CircleAvatar(
                                   radius: 24,
-                                  backgroundImage: NetworkImage(user?.photoUrl ?? 'https://i.pravatar.cc/150?u=${user?.id}'),
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: AppTheme.primaryGold,
+                                  child: Text(user?.prenom?.isNotEmpty == true ? user!.prenom![0].toUpperCase() : 'U', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
                                 ),
                                 Positioned(
                                   bottom: 0,
@@ -108,16 +113,56 @@ class _DashboardMembreScreenState extends State<DashboardMembreScreen> {
                             ),
                           ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 2)),
-                            ],
-                          ),
-                          child: const Icon(Symbols.notifications, color: AppTheme.emeraldDark),
+                        Consumer<NotificationProvider>(
+                          builder: (context, notif, _) {
+                            final count = notif.unreadCount;
+                            return GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => const NotificationScreen()),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 2)),
+                                      ],
+                                    ),
+                                    child: const Icon(Symbols.notifications, color: AppTheme.emeraldDark),
+                                  ),
+                                  if (count > 0)
+                                    Positioned(
+                                      right: 0,
+                                      top: 0,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: const BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        constraints: const BoxConstraints(
+                                          minWidth: 16,
+                                          minHeight: 16,
+                                        ),
+                                        child: Text(
+                                          count > 9 ? '9+' : '$count',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 8,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -284,13 +329,28 @@ class _DashboardMembreScreenState extends State<DashboardMembreScreen> {
                                   style: const TextStyle(fontWeight: FontWeight.bold, color: AppTheme.primaryGold),
                                 ),
                                 const SizedBox(height: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: AppTheme.primaryGold,
-                                    borderRadius: BorderRadius.circular(8),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PaymentScreen(
+                                          tontineName: activeTontines.first.nom,
+                                          amount: activeTontines.first.montantCotisation.toString(),
+                                          cycleId: activeTontines.first.currentCycleId ?? '',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.primaryGold,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: const Text('PAYER',
+                                        style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                                   ),
-                                  child: const Text('PAYER', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                                 ),
                               ],
                             ),
@@ -456,8 +516,8 @@ class _AvatarGroup extends StatelessWidget {
       height: 20,
       child: Stack(
         children: [
-          Positioned(left: 0, child: _smallAvatar('https://i.pravatar.cc/150?u=1')),
-          Positioned(left: 12, child: _smallAvatar('https://i.pravatar.cc/150?u=2')),
+          Positioned(left: 0, child: _smallInitialsAvatar('A')),
+          Positioned(left: 12, child: _smallInitialsAvatar('B')),
           Positioned(
             left: 24,
             child: Container(
@@ -476,14 +536,20 @@ class _AvatarGroup extends StatelessWidget {
     );
   }
 
-  Widget _smallAvatar(String url) {
+  Widget _smallInitialsAvatar(String initial) {
     return Container(
       width: 20,
       height: 20,
       decoration: BoxDecoration(
+        color: AppTheme.primaryGold,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 1),
-        image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+      ),
+      child: Center(
+        child: Text(
+          initial,
+          style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

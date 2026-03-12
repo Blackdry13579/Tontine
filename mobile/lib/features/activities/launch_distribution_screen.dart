@@ -166,6 +166,7 @@ class _LaunchDistributionScreenState extends State<LaunchDistributionScreen> {
 
     await provider.triggerDistribution(data);
 
+    if (!mounted) return;
     if (provider.error != null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(provider.error!)));
     } else {

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import '../../core/providers/auth_provider.dart';
 import 'package:mobile_app/features/auth/profile_config_screen.dart';
 import 'package:mobile_app/features/auth/login_screen.dart';
-import 'package:mobile_app/features/home/home_screen.dart';
 import '../../theme/app_theme.dart';
 
 class RegisterScreen extends StatefulWidget {
